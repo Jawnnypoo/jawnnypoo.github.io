@@ -1,0 +1,20 @@
+{
+  "name": "jawnnypoo",
+  "version": "1.0.0",
+  "authors": [
+    "John Carlson <jawnnypoo@gmail.com>"
+  ],
+  "description": "Jawnnypoo is cool",
+  "license": "Apache 2",
+  "homepage": "jawnnypoo.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#0.5"
+  }
+}
