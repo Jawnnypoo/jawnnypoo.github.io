@@ -1,5 +1,5 @@
-@import url("//fonts.googleapis.com/css?family=Bitter");
-@import url("//fonts.googleapis.com/css?family=Raleway");
+@import url("//fonts.googleapis.com/css?family=Pacifico");
+@import url("//fonts.googleapis.com/css?family=Lato");
 /*
  * PolymerThemes v0.4.0
  * Homepage: http://polymerthemes.com
@@ -9,7 +9,7 @@
  * Compatible with Polymer 0.5.1
  */
 html {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Lato', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-weight: 400;
@@ -20,12 +20,12 @@ body {
   margin: 0px;
   padding: 0px;
   height: 100%;
-  background-color: #f8ecc2;
-  color: #636363;
+  background-color: #00a0b0;
+  color: #fff;
 }
 html .font-special,
 html /deep/ .font-special {
-  font-family: 'Bitter', serif;
+  font-family: 'Pacifico', cursive;
 }
 html core-header-panel,
 html /deep/ core-header-panel {
@@ -41,7 +41,7 @@ html /deep/ .core-header {
   font-size: 18px;
   padding: 0 10px;
   transition: height 0.2s;
-  background-color: #ff003c;
+  background-color: #cc333f;
   color: #fff;
 }
 html .core-header a,
@@ -79,7 +79,7 @@ html /deep/ section {
 }
 html section[hero],
 html /deep/ section[hero] {
-  background-color: #fbe995;
+  background-color: #21acba;
 }
 html h1,
 html /deep/ h1,
@@ -103,7 +103,7 @@ html h3,
 html /deep/ h3,
 html h5,
 html /deep/ h5 {
-  font-family: 'Bitter', serif;
+  font-family: 'Pacifico', cursive;
 }
 html h1,
 html /deep/ h1 {
@@ -112,7 +112,7 @@ html /deep/ h1 {
 }
 html h2,
 html /deep/ h2 {
-  color: #636363;
+  color: #fff;
   font-size: 40px;
   margin: 20px 0px;
 }
@@ -142,11 +142,11 @@ html #ripple,
 html /deep/ #ripple,
 html::shadow #ripple,
 html /deep/::shadow #ripple {
-  color: #ff99b1;
+  color: #ebadb2;
 }
 html [autofocus],
 html /deep/ [autofocus] {
-  color: #ff003c;
+  color: #cc333f;
 }
 html paper-button,
 html /deep/ paper-button {
@@ -158,144 +158,144 @@ html /deep/ paper-button[link] {
 }
 html paper-button[disabled],
 html /deep/ paper-button[disabled] {
-  color: #6f6533 !important;
-  background: #c5b97f !important;
+  color: #257e88 !important;
+  background: #7dd3dc !important;
 }
 html paper-button[raised],
 html /deep/ paper-button[raised] {
-  color: #636363;
+  color: #425a60;
 }
 html paper-button #ripple,
 html /deep/ paper-button #ripple,
 html paper-button::shadow #ripple,
 html /deep/ paper-button::shadow #ripple {
-  color: #c1c1c1;
+  color: #adc1c6;
 }
 html paper-button[primary],
 html /deep/ paper-button[primary] {
-  color: #ff003c;
+  color: #cc333f;
 }
 html paper-button[primary] #ripple,
 html /deep/ paper-button[primary] #ripple,
 html paper-button[primary]::shadow #ripple,
 html /deep/ paper-button[primary]::shadow #ripple {
-  color: #ff99b1;
+  color: #ebadb2;
 }
 html paper-button[primary][raised],
 html /deep/ paper-button[primary][raised] {
-  background-color: #ff003c;
+  background-color: #cc333f;
   color: #fff;
 }
 html paper-button[primary][raised] #ripple,
 html /deep/ paper-button[primary][raised] #ripple,
 html paper-button[primary][raised]::shadow #ripple,
 html /deep/ paper-button[primary][raised]::shadow #ripple {
-  color: #d90033;
+  color: #ad2b36;
 }
 html paper-button[secondary],
 html /deep/ paper-button[secondary] {
-  color: #fabe28;
+  color: #eb6841;
 }
 html paper-button[secondary] #ripple,
 html /deep/ paper-button[secondary] #ripple,
 html paper-button[secondary]::shadow #ripple,
 html /deep/ paper-button[secondary]::shadow #ripple {
-  color: #fde5a9;
+  color: #f7c3b3;
 }
 html paper-button[secondary][raised],
 html /deep/ paper-button[secondary][raised] {
-  background-color: #fabe28;
+  background-color: #eb6841;
   color: #fff;
 }
 html paper-button[secondary][raised] #ripple,
 html /deep/ paper-button[secondary][raised] #ripple,
 html paper-button[secondary][raised]::shadow #ripple,
 html /deep/ paper-button[secondary][raised]::shadow #ripple {
-  color: #f1ae06;
+  color: #e74818;
 }
 html paper-button[success],
 html /deep/ paper-button[success] {
-  color: #88c100;
+  color: #4caf50;
 }
 html paper-button[success] #ripple,
 html /deep/ paper-button[success] #ripple,
 html paper-button[success]::shadow #ripple,
 html /deep/ paper-button[success]::shadow #ripple {
-  color: #daff80;
+  color: #b7e0b8;
 }
 html paper-button[success][raised],
 html /deep/ paper-button[success][raised] {
-  background-color: #88c100;
+  background-color: #4caf50;
   color: #fff;
 }
 html paper-button[success][raised] #ripple,
 html /deep/ paper-button[success][raised] #ripple,
 html paper-button[success][raised]::shadow #ripple,
 html /deep/ paper-button[success][raised]::shadow #ripple {
-  color: #74a400;
+  color: #419544;
 }
 html paper-button[info],
 html /deep/ paper-button[info] {
-  color: #0aa7e8;
+  color: #6a4a3c;
 }
 html paper-button[info] #ripple,
 html /deep/ paper-button[info] #ripple,
 html paper-button[info]::shadow #ripple,
 html /deep/ paper-button[info]::shadow #ripple {
-  color: #98defb;
+  color: #cdb3a7;
 }
 html paper-button[info][raised],
 html /deep/ paper-button[info][raised] {
-  background-color: #0aa7e8;
+  background-color: #6a4a3c;
   color: #fff;
 }
 html paper-button[info][raised] #ripple,
 html /deep/ paper-button[info][raised] #ripple,
 html paper-button[info][raised]::shadow #ripple,
 html /deep/ paper-button[info][raised]::shadow #ripple {
-  color: #088ec5;
+  color: #5a3f33;
 }
 html paper-button[warning],
 html /deep/ paper-button[warning] {
-  color: #ff8a00;
+  color: #edc951;
 }
 html paper-button[warning] #ripple,
 html /deep/ paper-button[warning] #ripple,
 html paper-button[warning]::shadow #ripple,
 html /deep/ paper-button[warning]::shadow #ripple {
-  color: #ffd099;
+  color: #f8e9b9;
 }
 html paper-button[warning][raised],
 html /deep/ paper-button[warning][raised] {
-  background-color: #ff8a00;
+  background-color: #edc951;
   color: #fff;
 }
 html paper-button[warning][raised] #ripple,
 html /deep/ paper-button[warning][raised] #ripple,
 html paper-button[warning][raised]::shadow #ripple,
 html /deep/ paper-button[warning][raised]::shadow #ripple {
-  color: #d97500;
+  color: #e9bc26;
 }
 html paper-button[error],
 html /deep/ paper-button[error] {
-  color: #d500f9;
+  color: #a351b1;
 }
 html paper-button[error] #ripple,
 html /deep/ paper-button[error] #ripple,
 html paper-button[error]::shadow #ripple,
 html /deep/ paper-button[error]::shadow #ripple {
-  color: #f097ff;
+  color: #dab9e0;
 }
 html paper-button[error][raised],
 html /deep/ paper-button[error][raised] {
-  background-color: #d500f9;
+  background-color: #a351b1;
   color: #fff;
 }
 html paper-button[error][raised] #ripple,
 html /deep/ paper-button[error][raised] #ripple,
 html paper-button[error][raised]::shadow #ripple,
 html /deep/ paper-button[error][raised]::shadow #ripple {
-  color: #b500d4;
+  color: #8b4497;
 }
 html paper-button[link],
 html /deep/ paper-button[link] {
@@ -324,25 +324,25 @@ html /deep/ paper-checkbox {
 }
 html paper-checkbox::shadow #ink,
 html /deep/ paper-checkbox::shadow #ink {
-  color: #636363;
+  color: #fff;
 /* Change the ink color for checked state */
 }
 html paper-checkbox::shadow #ink[checked],
 html /deep/ paper-checkbox::shadow #ink[checked] {
-  color: #ff003c;
+  color: #cc333f;
 }
 html paper-checkbox::shadow #checkbox,
 html /deep/ paper-checkbox::shadow #checkbox {
-  border-color: #636363;
+  border-color: #fff;
 /* Change the checkbox checked color */
 }
 html paper-checkbox::shadow #checkbox.checked,
 html /deep/ paper-checkbox::shadow #checkbox.checked {
-  border-color: #ff003c;
+  border-color: #cc333f;
 }
 html paper-fab,
 html /deep/ paper-fab {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-fab::shadow core-icon,
 html /deep/ paper-fab::shadow core-icon {
@@ -357,7 +357,7 @@ html paper-tabs,
 html /deep/ paper-tabs,
 html core-toolbar,
 html /deep/ core-toolbar {
-  background-color: #ff003c;
+  background-color: #cc333f;
   color: #fff;
   -webkit-box-shadow: 0px 3px 2px rgba(0,0,0,0.2);
   box-shadow: 0px 3px 2px rgba(0,0,0,0.2);
@@ -365,21 +365,21 @@ html /deep/ core-toolbar {
 html paper-tabs.transparent-teal,
 html /deep/ paper-tabs.transparent-teal {
   background-color: transparent;
-  color: #ff003c;
+  color: #cc333f;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 html paper-tabs.transparent-teal::shadow #selectionBar,
 html /deep/ paper-tabs.transparent-teal::shadow #selectionBar {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-tabs.transparent-teal paper-tab::shadow #ink,
 html /deep/ paper-tabs.transparent-teal paper-tab::shadow #ink {
-  color: #ff003c;
+  color: #cc333f;
 }
 html paper-tabs[noink][nobar] paper-tab.core-selected,
 html /deep/ paper-tabs[noink][nobar] paper-tab.core-selected {
-  color: #fabe28;
+  color: #edc951;
 }
 html paper-tabs::shadow *,
 html /deep/ paper-tabs::shadow * {
@@ -392,11 +392,11 @@ html /deep/ paper-tabs::shadow * {
 }
 html paper-tabs::shadow #selectionBar,
 html /deep/ paper-tabs::shadow #selectionBar {
-  background-color: #fabe28;
+  background-color: #edc951;
 }
 html paper-tab::shadow #ink,
 html /deep/ paper-tab::shadow #ink {
-  color: #fabe28;
+  color: #edc951;
 }
 html paper-toast,
 html /deep/ paper-toast {
@@ -406,7 +406,7 @@ html /deep/ paper-toast {
 }
 html paper-toast .highlight,
 html /deep/ paper-toast .highlight {
-  color: #0aa7e8;
+  color: #eeff41;
 }
 html paper-toast::shadow *,
 html /deep/ paper-toast::shadow * {
@@ -419,118 +419,118 @@ html /deep/ paper-toast::shadow * {
 }
 html paper-input[focused] .floated-label,
 html /deep/ paper-input[focused] .floated-label {
-  color: #ff003c;
+  color: #cc333f;
 }
 html paper-input[focused] .error-text,
 html /deep/ paper-input[focused] .error-text,
 html paper-input[focused] .error-icon,
 html /deep/ paper-input[focused] .error-icon {
-  color: #d500f9;
+  color: #a351b1;
 }
 html paper-input .focused-underline,
 html /deep/ paper-input .focused-underline {
-  background-color: #636363;
+  background-color: #ccf2ff;
 }
 html paper-input.invalid .focused-underline,
 html /deep/ paper-input.invalid .focused-underline {
-  background-color: #d500f9;
+  background-color: #a351b1;
 }
 html paper-input.invalid[focused] .floated-label,
 html /deep/ paper-input.invalid[focused] .floated-label {
-  color: #d500f9;
+  color: #a351b1;
 }
 html paper-input[disabled],
 html /deep/ paper-input[disabled] {
-  color: #c5b97f;
+  color: #7dd3dc;
 }
 html paper-input-decorator /deep/ .label-text,
 html /deep/ paper-input-decorator /deep/ .label-text,
 html paper-input-decorator /deep/ .error,
 html /deep/ paper-input-decorator /deep/ .error {
 /* inline label,  floating label, error message and error icon color when the input is unfocused */
-  color: #636363;
+  color: #fff;
 }
 html paper-input-decorator /deep/ .unfocused-underline,
 html /deep/ paper-input-decorator /deep/ .unfocused-underline {
 /* line color when the input is unfocused */
-  background-color: #636363;
+  background-color: #fff;
 }
 html paper-input-decorator /deep/ .focused-underline,
 html /deep/ paper-input-decorator /deep/ .focused-underline {
 /* line color when the input is focused */
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-input-decorator /deep/ .cursor,
 html /deep/ paper-input-decorator /deep/ .cursor {
 /* cursor color during the focus transition */
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-input-decorator /deep/ ::-webkit-input-placeholder,
 html /deep/ paper-input-decorator /deep/ ::-webkit-input-placeholder {
 /* platform specific rules for placeholder text */
-  color: #636363;
+  color: #fff;
 }
 html paper-input-decorator /deep/ ::-moz-placeholder,
 html /deep/ paper-input-decorator /deep/ ::-moz-placeholder {
-  color: #636363;
+  color: #fff;
 }
 html paper-input-decorator /deep/ :-ms-input-placeholder,
 html /deep/ paper-input-decorator /deep/ :-ms-input-placeholder {
-  color: #636363;
+  color: #fff;
 }
 html paper-input-decorator[focused] .floated-label .label-text,
 html /deep/ paper-input-decorator[focused] .floated-label .label-text,
 html paper-input-decorator[focused] /deep/ .floated-label .label-text,
 html /deep/ paper-input-decorator[focused] /deep/ .floated-label .label-text {
 /* floating label color when the input is focused */
-  color: #ff003c;
+  color: #cc333f;
 }
 html paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
 html /deep/ paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
 html paper-input-decorator[focused] /deep/ .error,
 html /deep/ paper-input-decorator[focused] /deep/ .error {
 /* floating label, error message nad error icon color when the input is invalid and focused */
-  color: #d500f9;
+  color: #a351b1;
 }
 html paper-input-decorator.invalid /deep/ .floated-label .label-text,
 html /deep/ paper-input-decorator.invalid /deep/ .floated-label .label-text,
 html paper-input-decorator /deep/ .error,
 html /deep/ paper-input-decorator /deep/ .error {
 /* floating label, error message nad error icon color when the input is invalid and not focused */
-  color: #d500f9;
+  color: #a351b1;
 }
 html paper-input-decorator.invalid /deep/ .focused-underline,
 html /deep/ paper-input-decorator.invalid /deep/ .focused-underline,
 html paper-input-decorator.invalid /deep/ .cursor,
 html /deep/ paper-input-decorator.invalid /deep/ .cursor {
 /* line and cursor color when the input is invalid and focused */
-  background-color: #d500f9;
+  background-color: #a351b1;
 }
 html .toolbar,
 html /deep/ .toolbar {
   color: #fff;
-  background: #ff003c;
+  background: #cc333f;
 }
 html .card,
 html /deep/ .card {
-  background: #f8ecc2;
+  background: #00a0b0;
 }
 html paper-item,
 html /deep/ paper-item {
-  background-color: #e80037;
+  background-color: #dd3845;
   color: #fff;
 }
 html paper-item:hover,
 html /deep/ paper-item:hover {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-item.core-selected,
 html /deep/ paper-item.core-selected {
-  background-color: #ff2155;
+  background-color: #e4606a;
 }
 html paper-dropdown::shadow #background,
 html /deep/ paper-dropdown::shadow #background {
-  background-color: #e80037;
+  background-color: #dd3845;
 }
 html .small,
 html /deep/ .small {
@@ -552,23 +552,23 @@ html /deep/ .inverse {
 }
 html paper-progress::shadow #activeProgress,
 html /deep/ paper-progress::shadow #activeProgress {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-progress::shadow #secondaryProgress,
 html /deep/ paper-progress::shadow #secondaryProgress {
-  background-color: #fabe28;
+  background-color: #eb6841;
 }
 html paper-radio-button::shadow #ink,
 html /deep/ paper-radio-button::shadow #ink {
-  color: #ff99b1;
+  color: #ebadb2;
 }
 html paper-radio-button::shadow #ink[checked],
 html /deep/ paper-radio-button::shadow #ink[checked] {
-  color: #ff99b1;
+  color: #ebadb2;
 }
 html paper-radio-button::shadow #onRadio,
 html /deep/ paper-radio-button::shadow #onRadio {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-radio-button::shadow #offRadio,
 html /deep/ paper-radio-button::shadow #offRadio {
@@ -576,15 +576,15 @@ html /deep/ paper-radio-button::shadow #offRadio {
 }
 html paper-toggle-button::shadow paper-radio-button::shadow #ink,
 html /deep/ paper-toggle-button::shadow paper-radio-button::shadow #ink {
-  color: #ff99b1;
+  color: #ebadb2;
 }
 html paper-toggle-button::shadow paper-radio-button::shadow #ink[checked],
 html /deep/ paper-toggle-button::shadow paper-radio-button::shadow #ink[checked] {
-  color: #ff99b1;
+  color: #ebadb2;
 }
 html paper-toggle-button::shadow paper-radio-button::shadow #onRadio,
 html /deep/ paper-toggle-button::shadow paper-radio-button::shadow #onRadio {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-toggle-button::shadow paper-radio-button::shadow #offRadio,
 html /deep/ paper-toggle-button::shadow paper-radio-button::shadow #offRadio {
@@ -592,33 +592,33 @@ html /deep/ paper-toggle-button::shadow paper-radio-button::shadow #offRadio {
 }
 html paper-toggle-button::shadow #toggleBar,
 html /deep/ paper-toggle-button::shadow #toggleBar {
-  background-color: #636363;
+  background-color: #fff;
 }
 html paper-toggle-button::shadow #toggleBar[checked],
 html /deep/ paper-toggle-button::shadow #toggleBar[checked] {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-slider::shadow #sliderBar::shadow #activeProgress,
 html /deep/ paper-slider::shadow #sliderBar::shadow #activeProgress {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-slider::shadow #sliderBar::shadow #secondaryProgress,
 html /deep/ paper-slider::shadow #sliderBar::shadow #secondaryProgress {
-  background-color: #fabe28;
+  background-color: #eb6841;
 }
 html paper-slider::shadow #sliderKnobInner,
 html /deep/ paper-slider::shadow #sliderKnobInner {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-slider::shadow #sliderKnobInner::before,
 html /deep/ paper-slider::shadow #sliderKnobInner::before {
-  background-color: #ff003c;
+  background-color: #cc333f;
 }
 html paper-icon-button[disabled]::shadow core-icon,
 html /deep/ paper-icon-button[disabled]::shadow core-icon {
-  color: #c5b97f !important;
+  color: #7dd3dc !important;
 }
 html paper-spinner:not([default-spinner])::shadow .circle,
 html /deep/ paper-spinner:not([default-spinner])::shadow .circle {
-  border-color: #ff003c;
+  border-color: #cc333f;
 }
