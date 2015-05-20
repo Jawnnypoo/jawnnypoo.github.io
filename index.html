@@ -8,49 +8,26 @@
   <meta name="viewport" 
   content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-  <script src="/bower_components/webcomponentsjs/webcomponents.js">
-  </script>
+  <script src="/bower_components/webcomponentsjs/webcomponents-min.js"></script>
 
+  <link rel="stylesheet" href="css/clean.css">
   <link rel="stylesheet" type="text/css" href="/css/theme.css" shim-shadowdom>
-  <link rel="import" href="/bower_components/font-roboto/roboto.html">
-  <link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
-  <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
-  <link rel="import" href="/bower_components/core-animated-pages/core-animated-pages.html">
-  <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
-
-  <link rel="import" href="/custom_elements/project-grid.html">
-
-  <link rel="import" href="/custom_elements/my_element.html">
-
-  <style>
-
-  html,body {
-    height: 100%;
-    margin: 0;
-    font-family: 'RobotoDraft', sans-serif;
-    /*Removes touch feedback on links (we provide our own)*/
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-touch-callout: none;
-  }
-
-  paper-icon-button:hover {
-      fill: #fb8c00;
-  }
-  
-  </style>
+  <link rel="import" href="/elements/elements.html">
 
 </head>
 
-<body unresolved>
-  <core-header-panel>
+<body fullbleed layout vertical>
+  <core-header-panel flex>
     <core-toolbar >
-      <span flex>Jawnnypoo</span>
+      <div>Jawnnypoo</div>
+      <!-- fill in with blank space -->
+      <span flex></span>
       <a href="mailto:jawnnypoo@gmail.com">
           <paper-icon-button icon="mail">
           </paper-icon-button>
       </a>
       <a href="https://play.google.com/store/apps/developer?id=Jawnnypoo" target="_blank">
-          <paper-icon-button icon="android">
+          <paper-icon-button icon="store">
           </paper-icon-button>
       </a>
     </core-toolbar>
@@ -61,6 +38,7 @@
 
   </core-header-panel>
 
+  <script src="app.js"></script>
 </body>
 
 </html>
