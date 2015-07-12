@@ -1,44 +1,156 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
 <!doctype html>
-<html>
+<html lang="">
 
 <head>
-
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Jawnnypoo" />
   <title>Jawnnypoo</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <meta name="viewport" 
-  content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#00BCD4">
 
-  <script src="/bower_components/webcomponentsjs/webcomponents-min.js"></script>
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
 
-  <link rel="stylesheet" href="css/clean.css">
-  <link rel="stylesheet" type="text/css" href="/css/theme.css" shim-shadowdom>
-  <link rel="import" href="/elements/elements.html">
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#00BCD4">
 
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Jawnnypoo">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Jawnnypoo">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild-->
+
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+
+  <!-- will be replaced with elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements.html">
+  <!-- endreplace-->
 </head>
 
-<body fullbleed layout vertical>
-  <core-header-panel flex>
-    <core-toolbar >
-      <div>Jawnnypoo</div>
-      <!-- fill in with blank space -->
-      <span flex></span>
-      <a href="mailto:jawnnypoo@gmail.com">
-          <paper-icon-button icon="mail">
-          </paper-icon-button>
-      </a>
-      <a href="https://play.google.com/store/apps/developer?id=Jawnnypoo" target="_blank">
-          <paper-icon-button icon="shop">
-          </paper-icon-button>
-      </a>
-    </core-toolbar>
+<body unresolved class="fullbleed layout vertical">
+  <span id="browser-sync-binding"></span>
+  <template is="dom-bind" id="app">
 
-    <!-- main page content will go here -->
-    <project-grid >
-    </project-grid>
+    <paper-drawer-panel id="paperDrawerPanel">
+      <div drawer>
 
-  </core-header-panel>
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <span class="paper-font-title">Menu</span>
+        </paper-toolbar>
 
-  <script src="app.js"></script>
+        <!-- Drawer Content -->
+          <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+              <a data-route="home" href="/">
+                <iron-icon icon="home"></iron-icon>
+                <span>Home</span>
+              </a>
+
+              <a data-route="resume" href="/resume">
+                <iron-icon icon="book"></iron-icon>
+                <span>Resume</span>
+              </a>
+
+              <a data-route="contact" href="/contact">
+                <iron-icon icon="mail"></iron-icon>
+                <span>Contact</span>
+              </a>
+          </paper-menu>
+      </div>
+      <paper-header-panel main mode="waterfall-tall">
+
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar">
+          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+          <span class="flex"></span>
+
+          <!-- Toolbar icons -->
+          <paper-icon-button icon="refresh"></paper-icon-button>
+          <paper-icon-button icon="search"></paper-icon-button>
+
+          <!-- Application name -->
+          <div class="middle paper-font-display2 app-name">John Carlson</div>
+
+          <!-- Application sub title -->
+          <div class="bottom title"></div>
+
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+            <section data-route="home">
+
+              <paper-material elevation="3">
+                <div class="icon-and-title-flex">
+					             <img src="https://lh4.ggpht.com/t4aaDVdlY7KTCUxQSSR254JRxV3q5XZlFCxuBsf2NZQgIaFl94Rx7pfLwfZ-iESfKJVZ=w300-rw"></img>
+					             <div class="title-container">
+						            <!-- REPLACE WITH YOUR APP NAME -->
+						          <span class="text-title">365 Days of Me</span>
+						          <br>
+                      <div class="intertext-padding"></div>
+						          <span class="text-subtitle">Once a day journaling made easy, by giving you prompts and optional reminders.</span>
+					            </div>
+				        </div>
+                <p>This is the app description</p>
+              </paper-material>
+
+            </section>
+
+            <section data-route="resume">
+              <paper-material elevation="1">
+                <h2 class="paper-font-display2">Users</h2>
+                <p>This is the users section</p>
+              </paper-material>
+            </section>
+
+            <section data-route="contact">
+              <paper-material elevation="1">
+                <h2 class="paper-font-display2">Contact</h2>
+                <paper-icon-button icon="images/ic_github.png" style="color: red;"></paper-icon-button>
+                <p>This is the contact section</p>
+              </paper-material>
+            </section>
+
+          </iron-pages>
+        </div>
+      </paper-header-panel>
+    </paper-drawer-panel>
+
+  </template>
+
+  <!-- build:js scripts/app.js -->
+  <script src="scripts/app.js"></script>
+  <!-- endbuild-->
 </body>
 
 </html>
