@@ -8,24 +8,22 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<dom-module id="my-greeting">
+<dom-module id="app-card">
   <style>
-    :host {
-      display: block;
-    }
+
   </style>
   <template>
     <paper-material elevation="3">
       <div class="align-right">
-        <paper-icon-button src="../images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/open-meh')"></paper-icon-button>
+        <paper-icon-button src="../../images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/open-meh')"></paper-icon-button>
         <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.openmeh')"></paper-icon-button>
       </div>
       <div class="post-container">
         <div class="post-thumb">
-          <img src="http://lh3.googleusercontent.com/9ShGYeHxnSH4kswZ-yDQuW8j-D7I7ilku4mFZG-XRA-TfX0OsrvCYB4T-lRIKK3S9-A=w200-rw"/>
+          <img src="{{imageUrl}}"/>
         </div>
         <div class="post-content">
-            <span class="text-title">open meh</span>
+            <span class="text-title">{{appName}}</span>
             </br>
             <span class="text-points">Retrofit • Gson • Dynamic theming</span>
             </br>
@@ -38,13 +36,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
   (function() {
     Polymer({
-      is: 'my-greeting',
+      is: 'app-card',
 
       properties: {
-        greeting: {
-          type: String,
-          value: 'Welcome!',
-          notify: true
+        imageUrl: {
+          type: String
+        },
+        appName: {
+          type: String
         }
       }
     });

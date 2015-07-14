@@ -78,11 +78,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <iron-icon icon="book"></iron-icon>
                 <span>Resume</span>
               </a>
-
-              <a data-route="contact" href="/contact">
-                <iron-icon icon="mail"></iron-icon>
-                <span>Contact</span>
-              </a>
           </paper-menu>
       </div>
       <paper-header-panel main mode="waterfall-tall">
@@ -93,6 +88,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <span class="flex"></span>
 
           <!-- Toolbar icons -->
+          <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/dev?id=8992288925330781810')"></paper-icon-button>
+          <paper-icon-button src="images/ic_github_light.png" onclick="openPage('https://github.com/Jawnnypoo')"></paper-icon-button>
           <a href="mailto:jawnnypoo@gmail.com" class="link-button"><paper-icon-button icon="mail"></paper-icon-button></a>
 
           <!-- Application name -->
@@ -110,11 +107,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="home">
 
               <h1 class="text-section">Android</h1>
-
+              
               <paper-material elevation="3">
                 <div class="align-right">
-                  <a href="https://github.com/Jawnnypoo/open-meh" class="link-button"><paper-icon-button src="images/ic_github.png"></paper-icon-button></a>
-                  <a href="https://play.google.com/store/apps/details?id=com.jawnnypoo.openmeh" class="link-button"><paper-icon-button icon="shop"></paper-icon-button></a>
+                  <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/open-meh')"></paper-icon-button>
+                  <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.openmeh')"></paper-icon-button>
                 </div>
                 <div class="post-container">
                   <div class="post-thumb">
@@ -132,8 +129,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <paper-material elevation="3">
                 <div class="align-right">
-                  <a href="https://github.com/Jawnnypoo/PhysicsLayout" class="link-button"><paper-icon-button src="images/ic_github.png"></paper-icon-button></a>
-                  <a href="https://play.google.com/store/apps/details?id=com.jawnnypoo.physicslayout.sample" class="link-button"><paper-icon-button icon="shop"></paper-icon-button></a>
+                  <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/PhysicsLayout')"></paper-icon-button>
+                  <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.physicslayout.sample')"></paper-icon-button>
                 </div>
                 <div class="post-container">
                   <div class="post-thumb">
@@ -185,7 +182,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
               </paper-material>
 
-              <paper-button raised class="colored" onclick="openDeveloperPage()">SEE ALL APPS</paper-button>
+              <paper-button raised class="colored" onclick="openPage('https://play.google.com/store/apps/dev?id=8992288925330781810')">SEE ALL APPS</paper-button>
 
               <h1 class="text-section">Web</h1>
 
@@ -204,6 +201,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       <span class="text-points">Polymer • Import.io • Ajax</span>
                       </br>
                       <span>A site I created for designers who want to easily download full resolution icons from the Play Store as a starting point for icon packs.</span>
+                  </div>
+                </div>
+              </paper-material>
+
+              <paper-material elevation="3">
+                <div class="align-right">
+                  <a href="https://github.com/Jawnnypoo/jawnnypoo.github.io" class="link-button"><paper-icon-button src="images/ic_github.png"></paper-icon-button></a>
+                </div>
+                <div class="post-container">
+                  <div class="post-thumb">
+                    <img src="images/ic_jawnnypoo.png"/>
+                  </div>
+                  <div class="post-content">
+                      <span class="text-title">Jawnnypoo.com</span>
+                      </br>
+                      <span class="text-points">Polymer • Routing • WebComponents</span>
+                      </br>
+                      <span>This site is open source!</span>
                   </div>
                 </div>
               </paper-material>
@@ -286,10 +301,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </section>
 
             <section data-route="resume">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Users</h2>
-                <p>This is the users section</p>
+              <paper-material elevation="3">
+                <img class="fit-width"src="images/resume.png"/>
               </paper-material>
+              <paper-button raised class="colored" onclick="openPage('../pdfs/carlson-resume-7-12-15.pdf')">DOWNLOAD PDF</paper-button>
             </section>
 
             <section data-route="contact">

@@ -35,6 +35,15 @@ body {
   float: left;
 }
 
+.fit-width {
+    max-width: 100%;
+  }
+
+.center {
+  display: block;
+  margin: auto;
+}
+
 .link-button {
 	text-decorations: none;
   color: inherit;
