@@ -93,8 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <span class="flex"></span>
 
           <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
+          <a href="mailto:jawnnypoo@gmail.com" class="link-button"><paper-icon-button icon="mail"></paper-icon-button></a>
 
           <!-- Application name -->
           <div class="middle paper-font-display2 app-name">John Carlson</div>
@@ -111,18 +110,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="home">
 
               <paper-material elevation="3">
-                <div class="icon-and-title-flex">
-					             <img src="https://lh4.ggpht.com/t4aaDVdlY7KTCUxQSSR254JRxV3q5XZlFCxuBsf2NZQgIaFl94Rx7pfLwfZ-iESfKJVZ=w300-rw"></img>
-					             <div class="title-container">
-						            <!-- REPLACE WITH YOUR APP NAME -->
-						          <span class="text-title">365 Days of Me</span>
-						          <br>
-                      <div class="intertext-padding"></div>
-						          <span class="text-subtitle">Once a day journaling made easy, by giving you prompts and optional reminders.</span>
-					            </div>
-				        </div>
-                <p>This is the app description</p>
+                <div class="align-right">
+                  <a href="mailto:jawnnypoo@gmail.com" class="link-button"><paper-icon-button icon="shop"></paper-icon-button></a>
+                </div>
+                <div class="post-container">
+                  <div class="post-thumb">
+                    <img src="http://lh4.ggpht.com/t4aaDVdlY7KTCUxQSSR254JRxV3q5XZlFCxuBsf2NZQgIaFl94Rx7pfLwfZ-iESfKJVZ=w200-rw"/>
+                  </div>
+                  <div class="post-content">
+                      <span class="text-title">365 Days of Me</span>
+                      </br>
+                      <span class="text-points">SQLite • Scheduled Notifications • Google Drive backup</span>
+                      </br>
+                      <span>365 Days of Me makes daily journaling doable. Simple prompts, from thought-provoking to humorous, ask for a simple response keeping you from creating excuses.</span>
+                  </div>
+                </div>
               </paper-material>
+
+              <paper-button raised class="colored" onclick="openDeveloperPage()">SEE ALL APPS</paper-button>
 
             </section>
 
@@ -136,7 +141,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="contact">
               <paper-material elevation="1">
                 <h2 class="paper-font-display2">Contact</h2>
-                <paper-icon-button icon="images/ic_github.png" style="color: red;"></paper-icon-button>
+                <paper-icon-button src="images/ic_github.png" style="color: red;"></paper-icon-button>
                 <p>This is the contact section</p>
               </paper-material>
             </section>

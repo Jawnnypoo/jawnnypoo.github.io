@@ -16,17 +16,39 @@ body {
 .text-title {
 	font-size: 2.5em;
 	font-weight: 300;
-	color: #555;
 }
 
-.icon-and-title-flex {
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap
+.text-points {
+	font-weight: bold;
 }
 
-.title-container {
-	margin-left: 2em;
+.align-right {
+	float: right;
+}
+
+.align-left {
+  float: left;
+}
+
+.link-button {
+	text-decorations: none;
+  color: inherit;
+}
+
+.post-container {
+    margin: 20px 20px 0 0;
+    overflow: auto
+}
+.post-thumb {
+    float: left
+}
+.post-thumb img {
+    display: block
+}
+.post-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
 }

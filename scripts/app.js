@@ -39,3 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
 
 })(document);
+
+function openDeveloperPage() {
+  window.open("https://play.google.com/store/apps/dev?id=8992288925330781810");
+}
