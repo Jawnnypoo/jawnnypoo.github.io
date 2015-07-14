@@ -22,6 +22,11 @@ body {
 	font-weight: bold;
 }
 
+.text-section {
+	font-size: 2.5em;
+	font-weight: 300;
+}
+
 .align-right {
 	float: right;
 }
