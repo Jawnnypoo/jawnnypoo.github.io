@@ -42,8 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Tile icon for Win8 (144x144) -->
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
-  <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <!-- build:css styles/app-theme.html -->
+  <link rel="stylesheet" href="styles/app-theme.html">
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
@@ -80,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </a>
           </paper-menu>
       </div>
-      <paper-header-panel main mode="waterfall-tall">
+      <paper-header-panel main >
 
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar">
@@ -113,18 +113,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/open-meh')"></paper-icon-button>
                   <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.openmeh')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_openmeh.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">open meh</span>
-                      </br>
-                      <span class="text-points">Retrofit • Gson • Dynamic theming</span>
-                      </br>
-                      <span>An open source unofficial meh.com app. Uses Retrofit for its REST client, Gson for Json parsing, and adapts the app colors based on the API response</span>
-                  </div>
-                </div>
+        				<div class="icon-and-title-flex">
+        					<img src="images/ic_openmeh.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">open meh</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Retrofit • Gson • Dynamic Theming</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">An open source unofficial meh.com app. Uses Retrofit for its REST client, Gson for Json parsing, and adapts the app colors based on the API response. The app also features the use of the YouTube API to play videos, and is featured on the <a href="https://android-arsenal.com/details/3/1999">Android Arsenal</a>. Check it out! Or don't. Meh.</span>
               </paper-material>
 
               <paper-material elevation="3">
@@ -132,54 +130,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/PhysicsLayout')"></paper-icon-button>
                   <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.physicslayout.sample')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_physicslayout.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">PhysicsLayout</span>
-                      </br>
-                      <span class="text-points">Box2d • Custom Layout • Drag detection</span>
-                      </br>
-                      <span>Android layout that simulates physics using JBox2D. Simply add views to the layout, and watch them interact.</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_physicslayout.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">PhysicsLayout</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Box2d • Custom Layout • Fling Detection</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">Android layout that simulates physics using JBox2D. Simply add views to the layout, and watch them interact. The goal of PhysicsLayout is to allow Android developers to include fun little games or easter eggs in their apps, without the need to add an entire game library or other dependency, other than jbox2d. Featured on <a href="https://android-arsenal.com/details/1/1762">Android Arsenal</a>.</span>
               </paper-material>
 
               <paper-material elevation="3">
                 <div class="align-right">
                   <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.j365')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_j365.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">365 Days of Me</span>
-                      </br>
-                      <span class="text-points">SQLite • Scheduled Notifications • Google Drive backup</span>
-                      </br>
-                      <span>365 Days of Me makes daily journaling doable. Simple prompts, from thought-provoking to humorous, ask for a simple response keeping you from creating excuses.</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_j365.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">365 Days of Me</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">SQLite • Scheduled Notifications • Google Drive Backup</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">365 Days of Me makes daily journaling doable. Simple prompts, from thought-provoking to humorous, ask for a simple response keeping you from creating excuses.</span>
               </paper-material>
 
               <paper-material elevation="3">
                 <div class="align-right">
                   <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.geotune')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_geotune.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">GeoTune</span>
-                      </br>
-                      <span class="text-points">Geofences • Google Maps • Content Provider</span>
-                      </br>
-                      <span>GeoTune gives you what you didn't know you needed. A location based theme song.</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_geotune.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">GeoTune</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Geofences • Google Maps • Content Provider</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">GeoTune gives you what you didn't know you needed. A location based theme song. A dabbling in Geofences turned into a fun and simple app that can add a little joy to your commute, or let all your coworkers know when you enter the office.</span>
               </paper-material>
 
               <paper-button raised class="colored" onclick="openPage('https://play.google.com/store/apps/dev?id=8992288925330781810')">SEE ALL APPS</paper-button>
@@ -191,36 +183,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/android-icon-grabber')"></paper-icon-button>
                   <paper-icon-button icon="social:public" onclick="openPage('http://jawnnypoo.github.io/android-icon-grabber/')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_icongrabber.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">Android Icon Grabber</span>
-                      </br>
-                      <span class="text-points">Polymer • Import.io • Ajax</span>
-                      </br>
-                      <span>A site I created for designers who want to easily download full resolution icons from the Play Store as a starting point for icon packs.</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_icongrabber.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">Android Icon Grabber</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Polymer • Import.io • Ajax</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">A site I created for designers who want to easily download full resolution icons from the Play Store as a starting point for icon packs. Web scraping is done by import.io, where results are accessed via a REST endpoint using AJAX.</span>
               </paper-material>
 
               <paper-material elevation="3">
                 <div class="align-right">
                   <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/jawnnypoo.github.io')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_jawnnypoo.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">Jawnnypoo.com</span>
-                      </br>
-                      <span class="text-points">Polymer • Routing • WebComponents</span>
-                      </br>
-                      <span>This site is open source!</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_jawnnypoo.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">Jawnnypoo.com</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Polymer • Routing • WebComponents</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">This site is open source! It is derived from Polymer Starter Kit 1.0.2 and should be responsive to mobile and desktop. You could even add it to your phone homescreen, if you felt so inclined!</span>
               </paper-material>
 
               <h1 class="text-section">Games</h1>
@@ -230,72 +218,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/zed')"></paper-icon-button>
                   <a href="apks/zed-debug.apk" class="link-button"><paper-icon-button icon="file-download"></paper-icon-button></a>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_zed.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">ZED</span>
-                      </br>
-                      <span class="text-points">OpenGL • Collision Detection • Lifecycle Management</span>
-                      </br>
-                      <span>The app I created for my Directed Study for my Certificate in Game Programming. A game created with OpenGL in Android with commented code, derived from Replica Island</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_zed.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">ZED</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">OpenGL • Collision Detection • Game Management</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">The app I created for my Directed Study for my Certificate in Game Programming. A game created with OpenGL in Android with commented code, derived from Replica Island.</span>
               </paper-material>
 
               <paper-material elevation="3">
                 <div class="align-right">
                   <paper-icon-button icon="av:videocam" onclick="openPage('https://www.youtube.com/watch?v=9EaLoHYM9to')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_metalblocksolid.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">Metal Block Solid</span>
-                      </br>
-                      <span class="text-points">DirectX • Xbox Controller Input • Stealth AI</span>
-                      </br>
-                      <span>Final project for Game Programming 2, created with the SAGE engine from Dr. Ian Parberry, with custom AI and collision detection.</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_metalblocksolid.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">Metal Block Solid</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">DirectX • Xbox Controller Input • Stealth AI</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">Final project for Game Programming 2, created with the SAGE engine from Dr. Ian Parberry, with custom AI and collision detection. As you can probably tell, takes heavy inspiration from Metal Gear Solid and Minecraft.</span>
               </paper-material>
 
               <paper-material elevation="3">
                 <div class="align-right">
                   <paper-icon-button icon="av:videocam" onclick="openPage('https://www.youtube.com/watch?v=zSCGcyp-eKE')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_skyknights.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">Sky Knights Arena</span>
-                      </br>
-                      <span class="text-points">DirectX • Xbox Controller Input • Skill Tree</span>
-                      </br>
-                      <span>Final project for Game Programming 1, featuring skill trees, multiple weapons, a companion, and boss battles.</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_skyknights.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">Sky Knights Arena</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">DirectX • Xbox Controller Input • Skill Tree</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">Final project for Game Programming 1, featuring skill trees, multiple weapons, a companion, and boss battles. Uses DirectInput for Xbox 360 controller support, and supports 360 degree shooting and movement.</span>
               </paper-material>
 
               <paper-material elevation="3">
                 <div class="align-right">
                   <paper-icon-button icon="av:videocam" onclick="openPage('https://www.youtube.com/watch?v=Qhs6EXBly4c')"></paper-icon-button>
                 </div>
-                <div class="post-container">
-                  <div class="post-thumb">
-                    <img src="images/ic_portal.png"/>
-                  </div>
-                  <div class="post-content">
-                      <span class="text-title">Portal Rube Goldberg</span>
-                      </br>
-                      <span class="text-points">Particle Effects • Box2d • Portals</span>
-                      </br>
-                      <span>Final project for Game Math and Physics; a Rube Goldberg machine with a Portal themed twist.</span>
-                  </div>
-                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_portal.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">Portal Rube Goldberg</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Particle Effects • Box2d • Portals</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">Final project for Game Math and Physics; a Rube Goldberg machine with a Portal themed twist. My personal introduction to box2d and the wonders of the world of physics in a computer system.</span>
               </paper-material>
 
             </section>

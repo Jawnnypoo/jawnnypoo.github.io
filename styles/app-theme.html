@@ -22,16 +22,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   /* Application theme */
 
   :root {
-    --dark-primary-color: #0097A7;
-    --default-primary-color: #00BCD4;
-    --light-primary-color: #B2EBF2;
-    --text-primary-color: #ffffff; /*text/icons*/
-    --accent-color: #FF5722;
-    --primary-background-color: #c5cae9;
-    --primary-text-color: #212121;
-    --secondary-text-color: #727272;
-    --disabled-text-color: #bdbdbd;
-    --divider-color: #B6B6B6;
+    --dark-primary-color:       #E64A19;
+    --default-primary-color:    #FF5722;
+    --light-primary-color:      #FFCCBC;
+    --text-primary-color:       #FFFFFF;
+    --accent-color:             #00BCD4;
+    --primary-background-color: #FFCCBC;
+    --primary-text-color:       #212121;
+    --secondary-text-color:     #727272;
+    --disabled-text-color:      #BDBDBD;
+    --divider-color:            #B6B6B6;
 
     /* Components */
 
@@ -107,6 +107,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   paper-button[raised].colored {
       background: var(--default-primary-color);
       color: #fff;
+  }
+
+  body {
+    background: #fafafa;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+  }
+
+  .text-title {
+  	font-size: 2.5em;
+  	font-weight: 300;
+  }
+
+  .text-points {
+  	font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .text-section {
+  	font-size: 2.5em;
+  	font-weight: 300;
+    color: var(--accent-color);
+  }
+
+  .text-description {
+  	word-wrap: break-word;
+  	font-size: 1.3em;
+  	font-weight: 300;
+  	color: #111;
+  }
+
+  .align-right {
+    position: absolute;
+    right: 0px;
+    padding: 10px;
+  }
+
+  .align-left {
+    float: left;
+  }
+
+  .fit-width {
+      max-width: 100%;
+    }
+
+  .link-button {
+  	text-decorations: none;
+    color: inherit;
+  }
+
+  .icon-and-title-flex {
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;
+  	align-items: center;
+  	flex-wrap: wrap
+  }
+
+  .appicon {
+  	width: 200px;
+  	height: 200px;
+  }
+
+  .title-container {
+  	margin-left: 2em;
   }
 
   /* Height of the scroll area */
