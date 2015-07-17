@@ -69,9 +69,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
           <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-              <a data-route="home" href="/">
-                <iron-icon icon="home"></iron-icon>
-                <span>Home</span>
+              <a data-route="me" href="/">
+                <iron-icon icon="face"></iron-icon>
+                <span>Me</span>
+              </a>
+
+              <a data-route="projects" href="/projects">
+                <iron-icon icon="dashboard"></iron-icon>
+                <span>Projects</span>
               </a>
 
               <a data-route="resume" href="/resume">
@@ -104,8 +109,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
-            <section data-route="home">
+            <section data-route="me">
 
+              <paper-material elevation="3">
+                <div class="icon-and-title-flex">
+                  <img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" class="appicon"></img>
+                  <div class="title-container">
+                    <span class="text-title">John Carlson (Jawnnypoo)</span>
+                    <br><div class="intertext-padding"></div>
+                    <span class="text-points">Developer • Gamer • Professional Griefer</span>
+                    <br>
+                  </div>
+                </div><br><br>
+                <span class="text-description">Hi there. So, introductions. I am John, nice to meet you. I love all things development, especially making cool apps. I got my start in game programming, and I love making games and apps with my wife. Oh, did I mention our two cats? They are the cutest. On weekends, you will usually find me coding away at something I enjoy, Geocaching in the sun, or possibly even camping under the stars. So, now that you know me, how are you today?</span>
+              </paper-material>
+
+            </section>
+
+            <section data-route="projects">
               <h1 class="text-section">Android</h1>
 
               <paper-material elevation="3">
@@ -277,7 +298,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         				</div><br><br>
         				<span class="text-description">Final project for Game Math and Physics; a Rube Goldberg machine with a Portal themed twist. My personal introduction to box2d and the wonders of the world of physics in a computer system.</span>
               </paper-material>
-
             </section>
 
             <section data-route="resume">
@@ -285,14 +305,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <img class="fit-width"src="images/resume.png"/>
               </paper-material>
               <paper-button raised class="colored" onclick="openPage('../pdfs/carlson-resume-7-12-15.pdf')">DOWNLOAD PDF</paper-button>
-            </section>
-
-            <section data-route="contact">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">Contact</h2>
-                <paper-icon-button src="images/ic_github.png" style="color: red;"></paper-icon-button>
-                <p>This is the contact section</p>
-              </paper-material>
             </section>
 
           </iron-pages>
