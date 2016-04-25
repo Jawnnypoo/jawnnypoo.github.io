@@ -74,9 +74,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <span>Me</span>
               </a>
 
-              <a data-route="projects" href="/projects">
+              <a data-route="apps" href="/apps">
                 <iron-icon icon="dashboard"></iron-icon>
-                <span>Projects</span>
+                <span>Apps</span>
+              </a>
+
+              <a data-route="libraries" href="/libraries">
+                <iron-icon icon="android"></iron-icon>
+                <span>Libraries</span>
               </a>
 
               <a data-route="resume" href="/resume">
@@ -126,8 +131,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             </section>
 
-            <section data-route="projects">
+            <section data-route="apps">
               <h1 class="text-section">Android</h1>
+
+              <paper-material elevation="3">
+                <div class="align-right">
+                  <paper-icon-button src="images/ic_gitlab.png" onclick="openPage('https://gitlab.com/Commit451/LabCoat')"></paper-icon-button>
+                  <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.commit451.gitlab')"></paper-icon-button>
+                </div>
+        				<div class="icon-and-title-flex">
+        					<img src="images/ic_labcoat.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">LabCoat</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Multiple Account Support • URL Parsing • Unit Tests</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">An open source unofficial GitLab.com app. Originally an open source run by another individual on GitHub, the project was forked and moved onto GitLab to support their development. <a href="https://twitter.com/dzaporozhets/status/700680242617135105">Enjoyed by the CTO of GitLab!</a></span>
+              </paper-material>
 
               <paper-material elevation="3">
                 <div class="align-right">
@@ -144,23 +166,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         					</div>
         				</div><br><br>
         				<span class="text-description">An open source unofficial meh.com app. Uses Retrofit for its REST client, Gson for Json parsing, and adapts the app colors based on the API response. The app also features the use of the YouTube API to play videos, and is featured on the <a href="https://android-arsenal.com/details/3/1999">Android Arsenal</a>. Check it out! Or don't. Meh.</span>
-              </paper-material>
-
-              <paper-material elevation="3">
-                <div class="align-right">
-                  <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/PhysicsLayout')"></paper-icon-button>
-                  <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.physicslayout.sample')"></paper-icon-button>
-                </div>
-                <div class="icon-and-title-flex">
-        					<img src="images/ic_physicslayout.png" class="appicon"></img>
-        					<div class="title-container">
-        						<span class="text-title">PhysicsLayout</span>
-        						<br><div class="intertext-padding"></div>
-        						<span class="text-points">Box2d • Custom Layout • Fling Detection</span>
-        						<br>
-        					</div>
-        				</div><br><br>
-        				<span class="text-description">Android layout that simulates physics using JBox2D. Simply add views to the layout, and watch them interact. The goal of PhysicsLayout is to allow Android developers to include fun little games or easter eggs in their apps, without the need to add an entire game library or other dependency, other than jbox2d. Featured on <a href="https://android-arsenal.com/details/1/1762">Android Arsenal</a>.</span>
               </paper-material>
 
               <paper-material elevation="3">
@@ -300,11 +305,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
+            <section data-route="libraries">
+              <paper-material elevation="3">
+                <div class="align-right">
+                  <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Jawnnypoo/PhysicsLayout')"></paper-icon-button>
+                  <paper-icon-button icon="shop" onclick="openPage('https://play.google.com/store/apps/details?id=com.jawnnypoo.physicslayout.sample')"></paper-icon-button>
+                </div>
+                <div class="icon-and-title-flex">
+        					<img src="images/ic_physicslayout.png" class="appicon"></img>
+        					<div class="title-container">
+        						<span class="text-title">PhysicsLayout</span>
+        						<br><div class="intertext-padding"></div>
+        						<span class="text-points">Box2d • Custom Layout • Fling Detection</span>
+        						<br>
+        					</div>
+        				</div><br><br>
+        				<span class="text-description">Android layout that simulates physics using JBox2D. Simply add views to the layout, and watch them interact. The goal of PhysicsLayout is to allow Android developers to include fun little games or easter eggs in their apps, without the need to add an entire game library or other dependency, other than jbox2d. Featured on <a href="https://android-arsenal.com/details/1/1762">Android Arsenal</a>.</span>
+              </paper-material>
+
+            <paper-material elevation="3">
+              <div class="align-right">
+                <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Commit451/AdapterLayout')"></paper-icon-button>
+              </div>
+              <div class="icon-and-title-flex">
+                <img src="images/ic_adapterlayout.png" class="appicon"></img>
+                <div class="title-container">
+                  <span class="text-title">AdapterLayout</span>
+                  <br><div class="intertext-padding"></div>
+                  <span class="text-points">RecyclerView API • Dynamic Changes • Adapts to Dataset</span>
+                  <br>
+                </div>
+              </div><br><br>
+              <span class="text-description">A different way of writing repeating layouts, using the same API as RecyclerView, making it easy to switch between the two. I wrote more about the reasons behind this library's creation on <a href="https://medium.com/@Commit451/adapterlayout-b06ff36affb7">Medium</a>.</span>
+            </paper-material>
+
+            <paper-material elevation="3">
+              <div class="align-right">
+                <paper-icon-button src="images/ic_github.png" onclick="openPage('https://github.com/Commit451/Gimbal')"></paper-icon-button>
+              </div>
+              <div class="icon-and-title-flex">
+                <img src="images/ic_gimbal.png" class="appicon"></img>
+                <div class="title-container">
+                  <span class="text-title">Gimbal</span>
+                  <br><div class="intertext-padding"></div>
+                  <span class="text-points">Rotation Locking • Gravity Event Normalization • Works well with PhysicsLayout</span>
+                  <br>
+                </div>
+              </div><br><br>
+              <span class="text-description">When Gimbal is used in an activity, it gives the developer control over locking and unlocking the current screen orientation of the user. This way, if the user prefers to use your app in landscape, they will not have to be forced into portrait in a single activty, but instead are locked into the orientation they were using at the time they went to the activity.</span>
+            </paper-material>
+
+            <paper-button raised class="colored" onclick="openPage('https://github.com/Commit451')">SEE ALL LIBRARIES</paper-button>
+          </section>
+
             <section data-route="resume">
               <paper-material elevation="3">
                 <img class="fit-width"src="images/resume.png"/>
               </paper-material>
-              <paper-button raised class="colored" onclick="openPage('../pdfs/carlson-resume-7-12-15.pdf')">DOWNLOAD PDF</paper-button>
+              <paper-button raised class="colored" onclick="openPage('../pdfs/carlson-resume-4-24-16.pdf')">DOWNLOAD PDF</paper-button>
             </section>
 
           </iron-pages>
