@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class SnackBarHelper {
   SnackBarHelper._();
+
   static void show(BuildContext context, String content,
       {SnackBarAction? action}) {
     final snackBar = SnackBar(content: Text(content), action: action);

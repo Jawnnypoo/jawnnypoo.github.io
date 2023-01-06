@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 /// Colors used throughout the app
 class CustomColors {
   CustomColors._();
+
   static const _primary = 0xFFfd5b3b;
   static const _r = 253;
   static const _g = 91;

@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:jawnnypoo/home_page.dart';
 import 'package:jawnnypoo/portfolio_page.dart';
 import 'package:jawnnypoo/ui/custom_colors.dart';
-import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

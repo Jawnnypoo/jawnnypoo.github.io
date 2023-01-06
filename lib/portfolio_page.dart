@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:jawnnypoo/data/project.dart';
 import 'package:jawnnypoo/nav.dart';
 import 'package:jawnnypoo/ui/snackbar_helper.dart';
 import 'package:jawnnypoo/ui/styles.dart';
 import 'package:jawnnypoo/ui/ui_factory.dart';
-import 'package:flutter/material.dart';
 import 'package:jawnnypoo/ui/urls.dart';
 
 class PortfolioPage extends StatefulWidget {

@@ -12,7 +12,6 @@ class FullscreenImagePage extends StatefulWidget {
 }
 
 class _FullscreenImagePageState extends State<FullscreenImagePage> {
-
   @override
   void initState() {
     super.initState();
@@ -36,12 +35,13 @@ class _FullscreenImagePageState extends State<FullscreenImagePage> {
 
   @override
   Widget build(BuildContext context) {
+    String image = widget.image;
     return Scaffold(
         appBar: AppBar(
           leading: const CloseButton(),
         ),
         body: Image.asset(
-          "assets/images/${widget.image}",
+          "assets/images/$image",
           width: double.infinity,
           height: double.infinity,
         ));

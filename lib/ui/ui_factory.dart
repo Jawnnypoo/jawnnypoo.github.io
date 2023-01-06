@@ -1,5 +1,5 @@
-import 'package:jawnnypoo/ui/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:jawnnypoo/ui/styles.dart';
 
 Widget nothing() {
   return const SizedBox();

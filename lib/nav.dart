@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:jawnnypoo/fullscreen_image_page.dart';
 import 'package:jawnnypoo/home_page.dart';
 import 'package:jawnnypoo/portfolio_page.dart';
-import 'package:flutter/material.dart';
 import 'package:jawnnypoo/ui/snackbar_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
 

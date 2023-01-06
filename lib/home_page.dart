@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jawnnypoo/nav.dart';
 import 'package:jawnnypoo/ui/custom_colors.dart';
 import 'package:jawnnypoo/ui/styles.dart';
-import 'package:jawnnypoo/ui/urls.dart';
 import 'package:jawnnypoo/ui/ui_factory.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:jawnnypoo/ui/urls.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

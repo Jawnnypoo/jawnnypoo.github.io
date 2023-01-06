@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 enum ProjectType { professional, personal, library }
@@ -41,7 +42,8 @@ class Project {
   }
 
   static Future<String> getJson(BuildContext context) async {
-    return DefaultAssetBundle.of(context).loadString('assets/json/portfolio.json');
+    return DefaultAssetBundle.of(context)
+        .loadString('assets/json/portfolio.json');
   }
 
   static Future<List<Project>> loadAll(BuildContext context) async {
