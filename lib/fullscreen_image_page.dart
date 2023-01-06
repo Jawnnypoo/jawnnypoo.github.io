@@ -41,7 +41,7 @@ class _FullscreenImagePageState extends State<FullscreenImagePage> {
           leading: const CloseButton(),
         ),
         body: Image.asset(
-          widget.image,
+          "assets/images/${widget.image}",
           width: double.infinity,
           height: double.infinity,
         ));
