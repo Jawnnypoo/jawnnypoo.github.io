@@ -1,0 +1,257 @@
+{
+  "projects": [
+    {
+      "name": "Instacart",
+      "company": "Instacart • 2018 - Present",
+      "type": "professional",
+      "description": "For Instacart, I spent a year and a half on the growth team, working on revamping login/sign up to a version 2, which allowed it to be controlled by the server, reordering fields and specifying configuration like password requirements dynamically from the backend. After that came Search, which includes both autosuggest and search results, as well as cross retailer search.",
+      "color": "#2A2A2A",
+      "images": [
+        "images/instacart_1.png",
+        "images/instacart_2.png",
+        "images/instacart_3.png"
+      ]
+    },
+    {
+      "name": "Cooking Matters",
+      "company": "Savvy Apps • 2017",
+      "type": "professional",
+      "description": "We partnered with Share Our Strength to create Cooking Matters, which provides over 100 budget-friendly, nutritious, and delicious recipes for busy families. You can search recipes by ingredient, cook time, allergies, and more. Meal planning is made easy with the weekly meal planner that integrates with the recipes.",
+      "color": "#2A2A2A",
+      "images": [
+        "images/cooking_matters_1.png",
+        "images/cooking_matters_2.png",
+        "images/cooking_matters_3.png",
+        "images/cooking_matters_4.png"
+      ]
+    },
+    {
+      "name": "Jellies",
+      "company": "Savvy Apps • 2018",
+      "type": "professional",
+      "description": "Jellies is a safe, curated environment for kids to watch videos. This app includes subscriptions on the Amazon app store, and uses Exoplayer to play back videos. Some unique challenges we faced included rejection from Google to add the app to the Play Store, and dealing with the limitations of YouTube and their API.",
+      "color": "#2A2A2A",
+      "images": [
+        "images/jellies_1.png",
+        "images/jellies_2.png",
+        "images/jellies_3.png",
+        "images/jellies_4.png"
+      ]
+    },
+    {
+      "name": "Pocket Prep",
+      "company": "Savvy Apps • 2016",
+      "type": "professional",
+      "description": "Hundreds of exam practice questions at your fingertips. Over 30 apps, including exam prep for ATI TEAS, PHR, CISM, etc. This app used Parse Platform as its backend, and eventually I ended up contributing a lot to their Android SDK.",
+      "color": "#2A2A2A",
+      "images": [
+        "images/pp_1.png",
+        "images/pp_2.png",
+        "images/pp_3.png"
+      ]
+    },
+    {
+      "name": "SHRM Certification",
+      "company": "Savvy Apps • 2017",
+      "type": "professional",
+      "description": "SHRM, or the Society of Human Resource Management, has an app for getting certified. You can find nearby approved activities in your area, and even add professional development credits using the app. Fun fact, this was the first app I ever worked on with Kotlin! (back when it was 0.8.0!)",
+      "color": "#2A2A2A",
+      "images": [
+        "images/shrm_1.png",
+        "images/shrm_2.png",
+        "images/shrm_3.png"
+      ]
+    },
+    {
+      "name": "BoatUS",
+      "company": "Savvy Apps • 2018",
+      "type": "professional",
+      "description": "So much more than a boat insurance app. You can use this app to get hurricane alerts, see the current and future tide charts, and even call for an emergency tow without having to talk to an operator. A unique challenge with this app was sourcing the weather, tides, and other data from so many different sources to bring it all together for the user.",
+      "color": "#2A2A2A",
+      "images": [
+        "images/boatus_1.png",
+        "images/boatus_2.png",
+        "images/boatus_3.png"
+      ]
+    },
+    {
+      "name": "LabCoat",
+      "company": "Commit 451 • 2015 - Present",
+      "type": "personal",
+      "description": "LabCoat is an native Android app built in Kotlin you can use to connect to and view projects hosted on a GitLab server. Currently the most stared Kotlin project on GitLab.com and the 7th most starred project of all GitLab.com repos, it was created to give back to the GitLab community, and has over 50,000 installs on the Play Store. Enjoyed by the [CTO of GitLab](https://twitter.com/dzaporozhets/status/700680242617135105). Did I mention it is open source?",
+      "color": "#06849F",
+      "images": [
+        "images/labcoat_1.png",
+        "images/labcoat_2.png",
+        "images/labcoat_3.png",
+        "images/labcoat_4.png"
+      ]
+    },
+    {
+      "name": "365 Journals",
+      "company": "Commit 451 • 2015 - Present",
+      "type": "personal",
+      "description": "My wife and I created this app to help people maintain a daily journal, prompting them with 366 different questions, one for each day. When you finish out a year of entries, you come back to the same questions, and can compare what you wrote the previous year to what you wrote this year. With over 90,000 installs on the Play Store, we love to hear about how it has changed lives by giving people somewhere to focus some of their writing and feelings.",
+      "color": "#06849F",
+      "images": [
+        "images/365_1.png",
+        "images/365_2.png",
+        "images/365_3.png",
+        "images/365_4.png"
+      ]
+    },
+    {
+      "name": "open meh",
+      "company": "Commit 451 • 2016 - Present",
+      "type": "personal",
+      "description": "meh.com is a quirky site that gives you a different deal of the day every 24 hours. open meh is an open source Android app based on the meh.com API. The API sends back a \"theme\" that the app uses to dynamically color the UI for each different deal. Through creating this app, we created our open source library, Easel, which helps you tint Android views with ease.",
+      "color": "#420B72",
+      "images": [
+        "images/open_meh_1.png",
+        "images/open_meh_2.png"
+      ]
+    },
+    {
+      "name": "Who What Where",
+      "company": "Commit 451 • 2016 - Present",
+      "type": "personal",
+      "description": "Word games can be tons of fun, and we wanted to bring that experience to mobile so that others could enjoy a good word game without needing cards, pen and paper, or even a timer. Who What Where gives you a who, a what, and a where, and it is your job to get your teammates to guess all three, and score a point for your team.",
+      "color": "#252525",
+      "images": [
+        "images/who_what_where_1.png",
+        "images/who_what_where_2.png",
+        "images/who_what_where_3.png",
+        "images/who_what_where_4.png",
+        "images/who_what_where_5.png"
+      ]
+    },
+    {
+      "name": "Customized Communications",
+      "company": "Oven Bits • 2016",
+      "type": "professional",
+      "description": "Our team at Oven Bits worked with Customized Communications to create a series of apps that help women track their journey to parenthood. Women can use the app to track their contractions, immunization records, hospital appointments, and much more.",
+      "color": "#104171",
+      "images": [
+        "images/cci_1.png",
+        "images/cci_2.png",
+        "images/cci_3.png",
+        "images/cci_4.png",
+        "images/cci_5.png"
+      ]
+    },
+    {
+      "name": "LUSH Cosmetics",
+      "company": "Oven Bits • 2015 - 2016",
+      "type": "professional",
+      "description": "At Ovenbits, under the Pivot E-Commerce team, our team created native iOS and Android apps for our client, LUSH Cosmetics USA. We integrated with an existing Demandware backend to create a custom app, full of social content and fun animations. The app works with both their Canadian and United States storefronts.",
+      "color": "#000000",
+      "images": [
+        "images/lush_1.png",
+        "images/lush_2.png",
+        "images/lush_3.png",
+        "images/lush_4.png",
+        "images/lush_5.png"
+      ]
+    },
+    {
+      "name": "Linkipedia • 2015",
+      "company": "Commit 451",
+      "type": "personal",
+      "description": "Wikipedia fun! A race from one subject to another by clicking links within Wikipedia articles. After playing this game with friends using our browsers, we decided it would be a fun app to create.",
+      "color": "#617C89",
+      "images": [
+        "images/linkipedia_1.png",
+        "images/linkipedia_2.png",
+        "images/linkipedia_3.png",
+        "images/linkipedia_4.png"
+      ]
+    },
+    {
+      "name": "GameStop",
+      "company": "Ludomade • 2015",
+      "type": "professional",
+      "description": "GameStop gives power to the players via their native apps for iOS and Android. With only two Android developers creating the 2.0 native app, I helped integrate material design and 5.0 features, created an RSS reader for connecting to GameInformer feeds, and lead other features such as Saved Searches and Preorder tracking.",
+      "color": "#ED3730",
+      "images": [
+        "images/gamestop_1.png",
+        "images/gamestop_2.png",
+        "images/gamestop_3.png",
+        "images/gamestop_4.png",
+        "images/gamestop_5.png"
+      ]
+    },
+    {
+      "name": "GeoTune",
+      "company": "Commit 451 • 2014 - 2015",
+      "type": "personal",
+      "description": "One day at work, we thought it would be cool and funny if every time our project manager walked into the office, \"Turn Down for What\" would play. With this inspiration, Commit451 created GeoTune. GeoTune lets you set geofences wherever you want and will play a notification tone or any other media when you enter that geofence.",
+      "color": "#01BFA5",
+      "images": [
+        "images/geotune_1.png",
+        "images/geotune_2.png",
+        "images/geotune_3.png",
+        "images/geotune_4.png"
+      ]
+    },
+    {
+      "name": "NBC",
+      "company": "Bottle Rocket • 2014",
+      "type": "professional",
+      "description": "NBC called upon Bottle Rocket's AWE team to create apps for their major channels, including NBC proper. I worked with a team to apply custom designs to these channels individual apps. I also contributed to the AWE video playback framework, fixing obscure MediaPlayer issues and other fun things.",
+      "color": "#FE682D",
+      "images": [
+        "images/nbc_1.png",
+        "images/nbc_2.png",
+        "images/nbc_3.png"
+      ]
+    },
+    {
+      "name": "SPG",
+      "company": "Bottle Rocket • 2013",
+      "type": "professional",
+      "description": "For the SPG app, I contributed to the SPG Keyless experience, which allows you to check into their hotels via the app and get a digital key to your room at supported hotels. I also worked on the guest special preferences feature which allowed guests to specify their room preferences when booking their stay.",
+      "color": "#FF493266",
+      "images": [
+        "images/spg_1.png",
+        "images/spg_2.png",
+        "images/spg_3.png"
+      ]
+    },
+    {
+      "name": "PhysicsLayout",
+      "company": "Jawnnypoo • 2015 - Present",
+      "type": "library",
+      "description": "Android layout that simulates physics using JBox2D. This library aims to help that middle ground of \"I want to add a fun physics type thing to my app, but don't want to invest in OpenGL or an entire game engine\". Surprisingly performant, you can see that many views can all be bouncing around at once without stuttering. Add in a gravity sensor, and then you can make the views slide around with gravity! Fun stuff.",
+      "color": "#FF493266",
+      "images": [
+        "images/physics_layout_1.png",
+        "images/physics_layout_2.png",
+        "images/physics_layout_3.png"
+      ]
+    },
+    {
+      "name": "QuickActionView",
+      "company": "Commit 451 • 2016 - Present",
+      "type": "library",
+      "description": "View that shows quick actions when long pressed, inspired by Pinterest. Long press a view, and quick actions to take are shown, overlayed on top of any given view. It even does fancy math to know if it is on the left side of the screen and can display actions to the right, or if it is on the right side of the screen and needs to display actions on the left. Neat!",
+      "color": "#FF493266",
+      "images": [
+        "images/qav_1.png",
+        "images/qav_2.png",
+        "images/qav_3.png"
+      ]
+    },
+    {
+      "name": "ResourcesPoet",
+      "company": "Commit 451 • 2016 - Present",
+      "type": "library",
+      "description": "Kotlin API for generating Android XML Resources. This can make creating Android apps or generating Android resources via command line or other means very easy. Used by Uber in their [stylist](https://github.com/uber/stylist) library.",
+      "color": "#FF493266",
+      "images": [
+        "images/resources_poet_1.png",
+        "images/resources_poet_2.png",
+        "images/resources_poet_3.png"
+      ]
+    }
+  ]
+}
