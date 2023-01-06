@@ -171,7 +171,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                             Nav.navigateToImage(context, image);
                           },
                           child: Image.asset(
-                            image,
+                            "assets/images/$image",
                             width: double.infinity,
                             height: double.infinity,
                           ),
