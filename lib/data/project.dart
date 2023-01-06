@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:ui';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/material.dart';
 
 enum ProjectType { professional, personal, library }
 
@@ -41,12 +40,12 @@ class Project {
     return Color(int.parse(hexColor, radix: 16));
   }
 
-  static Future<String> getJson() async {
-    return rootBundle.loadString('json/portfolio.json');
+  static Future<String> getJson(BuildContext context) async {
+    return DefaultAssetBundle.of(context).loadString('json/portfolio.json');
   }
 
-  static Future<List<Project>> loadAll() async {
-    var portfolioData = jsonDecode(await getJson());
+  static Future<List<Project>> loadAll(BuildContext context) async {
+    var portfolioData = jsonDecode(await getJson(context));
     List<dynamic> projectsDynamic =
         (portfolioData["projects"] as List<dynamic>);
     return projectsDynamic.map((e) => Project.fromJson(e)).toList();

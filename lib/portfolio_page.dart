@@ -26,7 +26,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
   }
 
   void _load() {
-    Project.loadAll().then((value) => _setProjects(value)).catchError(_onError);
+    Project.loadAll(context)
+        .then((value) => _setProjects(value))
+        .catchError(_onError);
   }
 
   void _setProjects(List<Project> projects) {
@@ -129,7 +131,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
           _changeProjectType(type);
         },
         child: Container(
-            margin: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
+            margin:
+                const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
             child: Text(label,
                 style: _type == type ? selectedTabStyle : tabStyle)));
   }
