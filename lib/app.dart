@@ -11,7 +11,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'John Carlson',
       theme: ThemeData(
-        primarySwatch: CustomColors.primaryMaterialColor(),
+        // Define the default brightness and colors.
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: CustomColors.primaryColor(),
+        ),
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
