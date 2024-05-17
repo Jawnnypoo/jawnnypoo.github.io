@@ -5,7 +5,7 @@ My website
 ## Build
 
 ```
-flutter build web
+flutter build web --wasm
 ```
 
 ## License
