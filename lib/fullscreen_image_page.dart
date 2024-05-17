@@ -5,7 +5,7 @@ import 'package:jawnnypoo/nav.dart';
 class FullscreenImagePage extends StatefulWidget {
   final String image;
 
-  const FullscreenImagePage(this.image, {Key? key}) : super(key: key);
+  const FullscreenImagePage(this.image, {super.key});
 
   @override
   State<FullscreenImagePage> createState() => _FullscreenImagePageState();

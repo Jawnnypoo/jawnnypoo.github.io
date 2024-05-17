@@ -8,7 +8,7 @@ import 'package:jawnnypoo/ui/ui_factory.dart';
 import 'package:jawnnypoo/ui/urls.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

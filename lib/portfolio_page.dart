@@ -9,7 +9,7 @@ import 'package:jawnnypoo/ui/ui_factory.dart';
 import 'package:jawnnypoo/ui/urls.dart';
 
 class PortfolioPage extends StatefulWidget {
-  const PortfolioPage({Key? key}) : super(key: key);
+  const PortfolioPage({super.key});
 
   @override
   State<PortfolioPage> createState() => _PortfolioPageState();
