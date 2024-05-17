@@ -36,9 +36,7 @@ class Nav {
   static Future<void> openUrl(BuildContext context, String? url) async {
     if (url != null) {
       Uri uri = Uri.parse(url);
-      if (!await launchUrl(uri)) {
-        SnackBarHelper.show(context, 'Could not launch $url');
-      }
+      await launchUrl(uri);
     }
   }
 }
