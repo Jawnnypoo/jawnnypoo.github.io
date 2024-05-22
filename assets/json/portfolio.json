@@ -245,7 +245,7 @@
       "name": "ResourcesPoet",
       "company": "Commit 451 • 2016 - Present",
       "type": "library",
-      "description": "Kotlin API for generating Android XML Resources. This can make creating Android apps or generating Android resources via command line or other means very easy. Used by Uber in their [stylist](https://github.com/uber/stylist) library.",
+      "description": "Kotlin API for generating Android XML Resources. This can make creating Android apps or generating Android resources via command line or other means very easy. Used by Uber in their [stylist](https://github.com/uber/stylist) library, and by Adidas in their Android codebase.",
       "color": "#FF493266",
       "images": [
         "resources_poet_1.png",
