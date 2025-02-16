@@ -58,7 +58,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             children: [
               Text(
                 "Portfolio",
-                style: logoStyle,
+                style: Styles.logoStyle,
               ),
               markdown(
                   "Here is a sample of some work I've done, professionally and personally. I've also done tons of work as an open sourcerer, which is up on GitHub under both [Jawnnypoo](https://github.com/Jawnnypoo) and [Commit 451](https://github.com/Commit451). Android is my passion, but I also have experience in Typescript and Flutter (this site is created with Flutter!). Please reach out if you would like a more formal resume as a PDF."),
@@ -97,7 +97,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     Image.network("$urlGravatar?s=100", width: 40, height: 40),
               ),
               horizontalSeparator(),
-              const Text('John Carlson | @Jawnnypoo'),
+              Text('John Carlson | @Jawnnypoo', style: Styles.logoStyle,),
             ],
           ),
         )),
@@ -133,7 +133,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             margin:
                 const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
             child: Text(label,
-                style: _type == type ? selectedTabStyle : tabStyle)));
+                style: _type == type ? Styles.selectedTabStyle : Styles.tabStyle)));
   }
 
   Widget _project(Project project) {
@@ -150,11 +150,11 @@ class _PortfolioPageState extends State<PortfolioPage> {
               children: [
                 Text(
                   project.name,
-                  style: logoStyle,
+                  style: Styles.logoStyle,
                 ),
                 Text(
                   project.company,
-                  style: companyStyle,
+                  style: Styles.companyStyle,
                 ),
                 verticalSeparator(),
                 markdown(project.description),
@@ -269,7 +269,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
   Widget markdown(String markdown) {
     return MarkdownBody(
       data: markdown,
-      styleSheet: MarkdownStyleSheet(p: bodyStyle),
+      styleSheet: MarkdownStyleSheet(p: Styles.bodyStyle),
       selectable: true,
       onTapLink: (String text, String? href, String title) =>
           linkOnTapHandler(context, text, href, title),

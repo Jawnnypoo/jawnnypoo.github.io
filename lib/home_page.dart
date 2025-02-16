@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             verticalSeparator(),
             Text(
               "John Carlson | @Jawnnypoo",
-              style: logoStyle,
+              style: Styles.logoStyle,
             ),
             verticalSeparator(),
             Text(
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Nav.navigateToPortfolio(context);
               },
-              child: Text('See My Portfolio', style: logoStyle),
+              child: Text('See My Portfolio', style: Styles.logoStyle),
             ),
             verticalSeparator(),
             Center(
@@ -101,10 +101,10 @@ class _HomePageState extends State<HomePage> {
                 text: TextSpan(children: [
               TextSpan(
                   text: "© John Carlson ${now.year} • Created with Flutter • ",
-                  style: baseStyle.copyWith(color: Colors.white)),
+                  style: Styles.baseStyle.copyWith(color: Colors.white)),
               TextSpan(
                   text: "See source",
-                  style: underlineStyle.copyWith(color: Colors.white),
+                  style: Styles.underlineStyle.copyWith(color: Colors.white),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () async {
                       Nav.openUrl(context, urlSiteSource);

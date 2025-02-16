@@ -20,13 +20,13 @@ Widget horizontalSeparator() {
 Widget title(String title) {
   return SelectableText(
     title,
-    style: titleStyle,
+    style: Styles.titleStyle,
   );
 }
 
 Widget text(String text) {
   return SelectableText(
     text,
-    style: bodyStyle,
+    style: Styles.bodyStyle,
   );
 }
