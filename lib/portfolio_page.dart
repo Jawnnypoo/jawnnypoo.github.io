@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:jawnnypoo/data/project.dart';
@@ -154,32 +153,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             verticalSeparator(),
             markdown(project.description),
             verticalSeparator(),
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 640.0,
-                viewportFraction: .3,
-                enableInfiniteScroll: false,
-              ),
-              items: project.images.map((image) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Nav.navigateToImage(context, image);
-                          },
-                          child: Image.asset(
-                            "assets/images/$image",
-                            width: double.infinity,
-                            height: double.infinity,
-                          ),
-                        ));
-                  },
-                );
-              }).toList(),
-            ),
+            _carousel(project)
           ],
         ));
   }
@@ -191,6 +165,89 @@ class _PortfolioPageState extends State<PortfolioPage> {
     String title,
   ) async {
     Nav.openUrl(context, href);
+  }
+
+  Widget _carousel(Project project) {
+    PageController _pageController = PageController(viewportFraction: 0.9);
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: GestureDetector(
+            onPanUpdate: (details) {
+              // Allow mouse dragging on desktop
+              _pageController.jumpTo(_pageController.offset - details.delta.dx);
+            },
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: project.images.length,
+              physics: const BouncingScrollPhysics(),
+              // Makes scrolling feel natural
+              itemBuilder: (context, index) {
+                String image = project.images[index];
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Nav.navigateToImage(context, image);
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16), // Optional
+                      child: AspectRatio(
+                        aspectRatio: 9 / 20, // Matches image aspect ratio
+                        child: Image.asset(
+                          "assets/images/$image",
+                          width: MediaQuery.of(context).size.width *
+                              0.9, // Ensures width fits
+                          height: double.infinity,
+                          fit: BoxFit.contain, // Ensures full image is visible
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+
+        // Left Arrow (Previous)
+        Positioned(
+          left: 10,
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back, size: 32, color: Colors.black),
+            onPressed: () {
+              if (_pageController.page! > 0) {
+                _pageController.previousPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              }
+            },
+          ),
+        ),
+
+        // Right Arrow (Next)
+        Positioned(
+          right: 10,
+          child: IconButton(
+            icon:
+                const Icon(Icons.arrow_forward, size: 32, color: Colors.black),
+            onPressed: () {
+              if (_pageController.page! < project.images.length - 1) {
+                _pageController.nextPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              }
+            },
+          ),
+        ),
+      ],
+    );
   }
 
   Widget markdown(String markdown) {
