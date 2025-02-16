@@ -138,24 +138,40 @@ class _PortfolioPageState extends State<PortfolioPage> {
 
   Widget _project(Project project) {
     return Container(
-        margin: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              project.name,
-              style: logoStyle,
+      margin: const EdgeInsets.all(24),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Text content on the left
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  project.name,
+                  style: logoStyle,
+                ),
+                Text(
+                  project.company,
+                  style: companyStyle,
+                ),
+                verticalSeparator(),
+                markdown(project.description),
+              ],
             ),
-            Text(
-              project.company,
-              style: companyStyle,
-            ),
-            verticalSeparator(),
-            markdown(project.description),
-            verticalSeparator(),
-            _carousel(project)
-          ],
-        ));
+          ),
+
+          const SizedBox(width: 24), // Spacer between text and carousel
+
+          // Carousel on the right
+          Expanded(
+            flex: 1,
+            child: _carousel(project),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> linkOnTapHandler(
