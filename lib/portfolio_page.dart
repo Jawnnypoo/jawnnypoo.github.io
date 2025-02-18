@@ -184,7 +184,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
   }
 
   Widget _carousel(Project project) {
-    PageController _pageController = PageController(viewportFraction: 0.9);
+    PageController pageController = PageController(viewportFraction: 0.9);
 
     return Stack(
       alignment: Alignment.center,
@@ -194,10 +194,10 @@ class _PortfolioPageState extends State<PortfolioPage> {
           child: GestureDetector(
             onPanUpdate: (details) {
               // Allow mouse dragging on desktop
-              _pageController.jumpTo(_pageController.offset - details.delta.dx);
+              pageController.jumpTo(pageController.offset - details.delta.dx);
             },
             child: PageView.builder(
-              controller: _pageController,
+              controller: pageController,
               itemCount: project.images.length,
               physics: const BouncingScrollPhysics(),
               // Makes scrolling feel natural
@@ -236,8 +236,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
           child: IconButton(
             icon: const Icon(Icons.arrow_back, size: 32, color: Colors.black),
             onPressed: () {
-              if (_pageController.page! > 0) {
-                _pageController.previousPage(
+              if (pageController.page! > 0) {
+                pageController.previousPage(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                 );
@@ -253,8 +253,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
             icon:
                 const Icon(Icons.arrow_forward, size: 32, color: Colors.black),
             onPressed: () {
-              if (_pageController.page! < project.images.length - 1) {
-                _pageController.nextPage(
+              if (pageController.page! < project.images.length - 1) {
+                pageController.nextPage(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                 );
