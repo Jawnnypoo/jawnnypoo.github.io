@@ -78,7 +78,7 @@
       "name": "LabCoat",
       "company": "Commit 451 • 2015 - Present",
       "type": "personal",
-      "description": "LabCoat is an native Android app built in Kotlin you can use to connect to and view projects hosted on a GitLab server. Currently the most stared Kotlin project on GitLab.com and the 7th most starred project of all GitLab.com repos, it was created to give back to the GitLab community, and has over 50,000 installs on the Play Store. Enjoyed by the [CTO of GitLab](https://twitter.com/dzaporozhets/status/700680242617135105). Did I mention it is open source?",
+      "description": "LabCoat is an native Android app built in Kotlin you can use to connect to and view projects hosted on a GitLab server. Currently the most starred Kotlin project on GitLab.com and the 7th most starred project of all GitLab.com repos, it was created to give back to the GitLab community, and has over 50,000 installs on the Play Store. Enjoyed by the [CTO of GitLab](https://twitter.com/dzaporozhets/status/700680242617135105). Did I mention it is open source?",
       "color": "#06849F",
       "images": [
         "labcoat_1.png",
