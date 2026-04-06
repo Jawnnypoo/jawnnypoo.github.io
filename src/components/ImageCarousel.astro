@@ -1,0 +1,145 @@
+---
+interface Props {
+  images: string[];
+  projectName: string;
+}
+
+const { images, projectName } = Astro.props;
+const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
+---
+
+<div class="carousel" id={carouselId}>
+  <div class="carousel-track">
+    {images.map((img, i) => (
+      <a href={`/images/${img}`} target="_blank" class="carousel-slide">
+        <img
+          src={`/images/${img}`}
+          alt={`${projectName} screenshot ${i + 1}`}
+          loading="lazy"
+        />
+      </a>
+    ))}
+  </div>
+  {images.length > 1 && (
+    <button class="carousel-btn prev" aria-label="Previous image">&larr;</button>
+    <button class="carousel-btn next" aria-label="Next image">&rarr;</button>
+  )}
+  {images.length > 1 && (
+    <div class="carousel-dots">
+      {images.map((_, i) => (
+        <button class:list={["dot", { active: i === 0 }]} data-index={i} aria-label={`Go to image ${i + 1}`} />
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f3f4f6;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.35s ease;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+  .carousel-slide img {
+    max-height: 520px;
+    width: auto;
+    max-width: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .carousel-slide img:hover {
+    transform: scale(1.02);
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s;
+    z-index: 2;
+  }
+
+  .carousel-btn:hover {
+    background: white;
+  }
+
+  .prev { left: 8px; }
+  .next { right: 8px; }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 0.75rem 0;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #d1d5db;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+  }
+
+  .dot.active {
+    background: var(--color-primary);
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', initCarousels);
+  document.addEventListener('DOMContentLoaded', initCarousels);
+
+  function initCarousels() {
+    document.querySelectorAll<HTMLElement>('.carousel').forEach((carousel) => {
+      const track = carousel.querySelector<HTMLElement>('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const dots = carousel.querySelectorAll<HTMLButtonElement>('.dot');
+      const prevBtn = carousel.querySelector<HTMLButtonElement>('.prev');
+      const nextBtn = carousel.querySelector<HTMLButtonElement>('.next');
+      let current = 0;
+
+      if (!track || slides.length === 0) return;
+
+      function goTo(index: number) {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+        track!.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      prevBtn?.addEventListener('click', () => goTo(current - 1));
+      nextBtn?.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => goTo(Number(dot.dataset.index)));
+      });
+    });
+  }
+</script>

@@ -1,0 +1,73 @@
+---
+import ImageCarousel from './ImageCarousel.astro';
+
+interface Props {
+  name: string;
+  company: string;
+  description: string;
+  images: string[];
+}
+
+const { name, company, description, images } = Astro.props;
+
+// Convert markdown links [text](url) to HTML <a> tags
+const descriptionHtml = description.replace(
+  /\[([^\]]+)\]\(([^)]+)\)/g,
+  '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+);
+---
+
+<article class="project">
+  <div class="project-info">
+    <h3 class="project-name">{name}</h3>
+    <p class="project-company">{company}</p>
+    <p class="project-description" set:html={descriptionHtml} />
+  </div>
+  <div class="project-carousel">
+    <ImageCarousel images={images} projectName={name} />
+  </div>
+</article>
+
+<style>
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .project:last-child {
+    border-bottom: none;
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-name {
+    font-family: var(--font-mono);
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .project-company {
+    color: var(--color-gray);
+    font-size: 1.1rem;
+  }
+
+  .project-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .project {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
