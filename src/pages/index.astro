@@ -125,9 +125,9 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
   }
 
   .card {
-    background: white;
+    background: var(--color-surface);
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     padding: 2.5rem;
     max-width: 600px;
     width: 100%;
@@ -156,7 +156,7 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
     font-size: 1.2rem;
     text-align: center;
     line-height: 1.6;
-    color: var(--color-dark);
+    color: var(--color-text-muted);
   }
 
   .cta {
@@ -165,15 +165,15 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: 700;
     padding: 0.75rem 2rem;
-    border: 2px solid var(--color-dark);
+    border: 2px solid var(--color-primary);
     border-radius: 8px;
-    color: var(--color-dark);
+    color: var(--color-primary);
     text-decoration: none;
     transition: background-color 0.2s, color 0.2s;
   }
 
   .cta:hover {
-    background: var(--color-dark);
+    background: var(--color-primary);
     color: white;
     opacity: 1;
   }
@@ -190,21 +190,21 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.06);
-    color: var(--color-dark);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text);
     text-decoration: none;
     transition: background-color 0.2s, transform 0.2s;
   }
 
   .social-btn:hover {
-    background: rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.15);
     transform: scale(1.1);
     opacity: 1;
   }
 
   /* --- Portfolio --- */
   .portfolio {
-    background: white;
+    background: var(--color-bg);
   }
 
   .portfolio-inner {
@@ -241,14 +241,14 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
     border: none;
     padding: 0.6rem 1.25rem;
     font-size: 1rem;
-    color: var(--color-gray);
+    color: var(--color-text-muted);
     cursor: pointer;
     border-radius: 6px;
     transition: color 0.2s, background 0.2s;
   }
 
   .tab:hover {
-    background: #f3f4f6;
+    background: var(--color-surface-raised);
   }
 
   .tab.active {
@@ -258,7 +258,7 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
 
   .divider {
     border: none;
-    border-top: 1px solid #d1d5db;
+    border-top: 1px solid var(--color-border);
     margin: 0.5rem 0 1rem;
   }
 
