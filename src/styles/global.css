@@ -7,7 +7,7 @@
 
 :root {
   --color-primary: #fd5b3b;
-  --color-bg: #121212;
+  --color-bg: #212121;
   --color-surface: #1e1e1e;
   --color-surface-raised: #2a2a2a;
   --color-text: #e4e4e7;
@@ -26,12 +26,15 @@
 
 html {
   scroll-behavior: smooth;
+  min-height: 100%;
+  background-color: var(--color-bg);
 }
 
 body {
+  min-height: 100vh;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color: var(--color-text);
-  background: var(--color-bg);
+  background: transparent;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }

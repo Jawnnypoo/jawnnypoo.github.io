@@ -117,10 +117,7 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('/images/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: transparent;
     padding: 2rem;
   }
 
@@ -204,13 +201,17 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
 
   /* --- Portfolio --- */
   .portfolio {
-    background: var(--color-bg);
+    background: transparent;
+    padding: 0 1rem 3rem;
   }
 
   .portfolio-inner {
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 3rem 2rem;
+    background: var(--color-surface);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
 
   .intro {

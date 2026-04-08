@@ -4,6 +4,16 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const stars = Array.from({ length: 56 }, (_, index) => ({
+  id: index,
+  left: `${(index * 17) % 100}%`,
+  top: `${(index * 29 + 13) % 100}%`,
+  duration: `${6 + (index % 7) * 1.25}s`,
+  delay: `${(index % 7) * -1.3}s`,
+  driftX: `${((index % 5) - 2) * 14}px`,
+  driftY: `${((index % 7) - 3) * 12}px`,
+  opacity: `${0.4 + (index % 4) * 0.14}`,
+}));
 ---
 
 <!doctype html>
@@ -16,10 +26,60 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <div class="starfield" aria-hidden="true">
+      {stars.map((star) => (
+        <span
+          class="star"
+          style={`left:${star.left}; top:${star.top}; --duration:${star.duration}; --delay:${star.delay}; --drift-x:${star.driftX}; --drift-y:${star.driftY}; --star-opacity:${star.opacity};`}
+        ></span>
+      ))}
+    </div>
     <slot />
   </body>
 </html>
 
 <style is:global>
   @import '../styles/global.css';
+
+  .starfield {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: #212121;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #ffffff;
+    opacity: var(--star-opacity, 0.75);
+    animation: star-float var(--duration, 16s) ease-in-out var(--delay, 0s) infinite alternate;
+    will-change: transform, opacity;
+  }
+
+  @keyframes star-float {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: calc(var(--star-opacity, 0.75) * 0.35);
+    }
+    25% {
+      transform: translate3d(calc(var(--drift-x, 0px) * 0.35), calc(var(--drift-y, 0px) * 0.35), 0) scale(1.2);
+      opacity: var(--star-opacity, 0.75);
+    }
+    50% {
+      transform: translate3d(calc(var(--drift-x, 0px) * 0.6), calc(var(--drift-y, 0px) * 0.6), 0) scale(0.9);
+      opacity: calc(var(--star-opacity, 0.75) * 0.45);
+    }
+    75% {
+      transform: translate3d(calc(var(--drift-x, 0px) * 0.82), calc(var(--drift-y, 0px) * 0.82), 0) scale(1.15);
+      opacity: calc(var(--star-opacity, 0.75) * 0.95);
+    }
+    100% {
+      transform: translate3d(var(--drift-x, 0px), var(--drift-y, 0px), 0) scale(1);
+      opacity: calc(var(--star-opacity, 0.75) * 0.5);
+    }
+  }
 </style>
