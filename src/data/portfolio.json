@@ -106,6 +106,23 @@
       }
     },
     {
+      "name": "Salamander AI",
+      "company": "Commit 451 • 2025 - Present",
+      "type": "personal",
+      "description": "With the power of AI, you can always have a presence at your computer. Stay productive, even when you are away from keyboard. Connect your phone to your computer, create a runner, choose a directory, and start a conversation with your AI. While it does the work, you can be out doing something you love — and when it's done, you get a push notification, ready for the next task.",
+      "color": "#6366F1",
+      "images": [
+        "salamander_1.webp",
+        "salamander_2.webp",
+        "salamander_3.webp",
+        "salamander_4.webp"
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.commit451.salamander",
+        "appStore": "https://apps.apple.com/us/app/salamander-ai/id6752116173"
+      }
+    },
+    {
       "name": "LabCoat",
       "company": "Commit 451 • 2015 - Present",
       "type": "personal",
