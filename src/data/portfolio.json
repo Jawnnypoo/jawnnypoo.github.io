@@ -10,7 +10,10 @@
         "instacart_1.png",
         "instacart_2.png",
         "instacart_3.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.instacart.client"
+      }
     },
     {
       "name": "Cooking Matters",
@@ -36,7 +39,10 @@
         "jellies_2.png",
         "jellies_3.png",
         "jellies_4.png"
-      ]
+      ],
+      "links": {
+        "amazonAppStore": "https://www.amazon.com/Savvy-Apps-Jellies-Safe-Videos/dp/B07B1FSDW6"
+      }
     },
     {
       "name": "Pocket Prep",
@@ -48,7 +54,10 @@
         "pp_1.png",
         "pp_2.png",
         "pp_3.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.pocketprep.android.nursing"
+      }
     },
     {
       "name": "SHRM Certification",
@@ -60,7 +69,10 @@
         "shrm_1.png",
         "shrm_2.png",
         "shrm_3.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=org.shrm.certification"
+      }
     },
     {
       "name": "BoatUS",
@@ -72,7 +84,26 @@
         "boatus_1.png",
         "boatus_2.png",
         "boatus_3.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.boatus.boatusapp"
+      }
+    },
+    {
+      "name": "Askarasu",
+      "company": "Commit 451 • 2025 - Present",
+      "type": "personal",
+      "description": "You vs. the AI. Askarasu is a word trivia game with a twist — you're chatting with an AI that knows the answer, but won't just tell you. Ask yes/no questions, narrow down the possibilities, and guess the word before the day is over and the challenge expires. Think fast. Ask smart. Beat the AI. Created using Kotlin Multiplatform, Compose Multiplatform, Ktor for HTTP requests, Koog for interfacing with our AI provider, and deployed to Google Cloud Run, using RevenueCat for in app purchases, Firebase Cloud Messaging for push, and Admob for ads.",
+      "color": "#6366F1",
+      "images": [
+        "askarasu_1.webp",
+        "askarasu_2.webp",
+        "askarasu_3.webp"
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.commit451.lalilulelo",
+        "appStore": "https://apps.apple.com/us/app/askarasu-word-trivia-game/id6757810632"
+      }
     },
     {
       "name": "LabCoat",
@@ -85,7 +116,12 @@
         "labcoat_2.png",
         "labcoat_3.png",
         "labcoat_4.png"
-      ]
+      ],
+      "links": {
+        "gitlab": "https://gitlab.com/Commit451/LabCoat",
+        "playStore": "https://play.google.com/store/apps/details?id=com.commit451.gitlab",
+        "appStore": "https://apps.apple.com/us/app/labcoat-for-gitlab/id6761061498"
+      }
     },
     {
       "name": "365 Journals",
@@ -98,7 +134,10 @@
         "365_2.png",
         "365_3.png",
         "365_4.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.jawnnypoo.j365"
+      }
     },
     {
       "name": "open meh",
@@ -109,7 +148,10 @@
       "images": [
         "open_meh_1.png",
         "open_meh_2.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.jawnnypoo.openmeh"
+      }
     },
     {
       "name": "Who What Where",
@@ -151,7 +193,10 @@
         "lush_3.png",
         "lush_4.png",
         "lush_5.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.lush.app"
+      }
     },
     {
       "name": "Linkipedia • 2015",
@@ -178,7 +223,10 @@
         "gamestop_3.png",
         "gamestop_4.png",
         "gamestop_5.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.gamestop.powerup.v2"
+      }
     },
     {
       "name": "GeoTune",
@@ -203,7 +251,10 @@
         "nbc_1.png",
         "nbc_2.png",
         "nbc_3.png"
-      ]
+      ],
+      "links": {
+        "playStore": "https://play.google.com/store/apps/details?id=com.nbcuni.nbc"
+      }
     },
     {
       "name": "SPG",
@@ -227,7 +278,11 @@
         "physics_layout_1.png",
         "physics_layout_2.png",
         "physics_layout_3.png"
-      ]
+      ],
+      "links": {
+        "github": "https://github.com/Jawnnypoo/PhysicsLayout",
+        "playStore": "https://play.google.com/store/apps/details?id=com.jawnnypoo.physicslayout.sample"
+      }
     },
     {
       "name": "QuickActionView",
@@ -239,7 +294,10 @@
         "qav_1.png",
         "qav_2.png",
         "qav_3.png"
-      ]
+      ],
+      "links": {
+        "github": "https://github.com/Commit451/QuickActionView"
+      }
     },
     {
       "name": "ResourcesPoet",
@@ -251,7 +309,10 @@
         "resources_poet_1.png",
         "resources_poet_2.png",
         "resources_poet_3.png"
-      ]
+      ],
+      "links": {
+        "github": "https://github.com/Commit451/ResourcesPoet"
+      }
     }
   ]
 }

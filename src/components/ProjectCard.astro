@@ -1,14 +1,23 @@
 ---
 import ImageCarousel from './ImageCarousel.astro';
 
+interface ProjectLinks {
+  github?: string;
+  gitlab?: string;
+  playStore?: string;
+  appStore?: string;
+  amazonAppStore?: string;
+}
+
 interface Props {
   name: string;
   company: string;
   description: string;
   images: string[];
+  links?: ProjectLinks;
 }
 
-const { name, company, description, images } = Astro.props;
+const { name, company, description, images, links } = Astro.props;
 
 // Convert markdown links [text](url) to HTML <a> tags
 const descriptionHtml = description.replace(
@@ -22,6 +31,45 @@ const descriptionHtml = description.replace(
     <h3 class="project-name">{name}</h3>
     <p class="project-company">{company}</p>
     <p class="project-description" set:html={descriptionHtml} />
+    {links && (
+      <ul class="project-links">
+        {links.github && (
+          <li>
+            <a href={links.github} target="_blank" rel="noopener noreferrer" class="link-btn" aria-label={`${name} on GitHub`}>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </li>
+        )}
+        {links.gitlab && (
+          <li>
+            <a href={links.gitlab} target="_blank" rel="noopener noreferrer" class="link-btn" aria-label={`${name} on GitLab`}>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M23.955 13.587l-1.342-4.135-2.664-8.189a.455.455 0 00-.867 0L16.418 9.45H7.582L4.919 1.263a.455.455 0 00-.867 0L1.388 9.452.045 13.587a.924.924 0 00.331 1.023L12 23.054l11.624-8.443a.92.92 0 00.331-1.024"/></svg>
+            </a>
+          </li>
+        )}
+        {links.playStore && (
+          <li>
+            <a href={links.playStore} target="_blank" rel="noopener noreferrer" class="link-btn" aria-label={`${name} on Google Play`}>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.3 12l2.398-2.492zM5.864 2.658L16.8 9.49l-2.302 2.303L5.864 2.658z"/></svg>
+            </a>
+          </li>
+        )}
+        {links.appStore && (
+          <li>
+            <a href={links.appStore} target="_blank" rel="noopener noreferrer" class="link-btn" aria-label={`${name} on the App Store`}>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
+            </a>
+          </li>
+        )}
+        {links.amazonAppStore && (
+          <li>
+            <a href={links.amazonAppStore} target="_blank" rel="noopener noreferrer" class="link-btn" aria-label={`${name} on the Amazon Appstore`}>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M2.077.058c-.062.005-.123.012-.183.024C.879.272.069 1.16.013 2.214c-.001.012-.001.024 0 .035v19.502c-.001.012-.001.024 0 .036.063 1.066.85 1.952 1.892 2.146.011.001.023.001.034 0h20.063c1.111-.075 1.998-1.026 1.998-2.181V2.249C24 1.094 23.113.143 22.002.068h-.034L2.077.058zm15.05 15.92h-.005c-.124 0-.235.06-.305.152-.49.566-1.165 1.06-2.085 1.396-.916.336-1.946.502-3.087.502-.917 0-1.832-.166-2.74-.502s-1.677-.788-2.31-1.36c-.108-.094-.215-.156-.337-.156-.064 0-.124.027-.166.058-.043.03-.07.075-.078.122-.013.075.025.143.073.207 1.31 1.4 3.197 2.183 5.652 2.183.6 0 1.21-.072 1.836-.213.62-.142 1.214-.347 1.778-.612.564-.266 1.054-.572 1.466-.92.265-.224.498-.45.7-.683.034-.038.044-.074.044-.118 0-.04-.027-.092-.066-.122-.04-.03-.087-.046-.123-.046zM7.082 6.46c-1.085 0-2.005.27-2.766.81-.76.54-1.196 1.244-1.31 2.117-.018.13.013.215.156.245l1.766.196c.143.005.236-.062.276-.205.135-.6.385-1.046.764-1.347.378-.302.836-.452 1.373-.452.66 0 1.142.176 1.45.526.308.354.456.876.456 1.568v.245c-.7.087-1.302.158-1.808.214a13.276 13.276 0 0 0-1.485.276 6.96 6.96 0 0 0-1.422.456 4.04 4.04 0 0 0-1.144.733c-.33.302-.586.66-.766 1.082-.18.42-.27.91-.27 1.466 0 .51.087.985.262 1.422.176.437.42.81.736 1.117.317.305.683.54 1.098.7.413.16.86.24 1.34.24.787 0 1.482-.155 2.082-.466.6-.31 1.137-.755 1.612-1.34.046.137.097.27.155.402.058.13.13.275.215.43.085.158.197.336.336.534.062.062.137.094.225.094.018 0 .052-.005.097-.013.05-.005.077-.014.092-.024l1.32-.917a.243.243 0 0 0 .117-.205c0-.05-.014-.108-.043-.176-.144-.272-.243-.49-.297-.654-.054-.166-.082-.397-.082-.7v-4.502c0-.395-.025-.768-.072-1.117-.05-.347-.135-.683-.255-1.005-.12-.32-.276-.602-.464-.85-.187-.247-.41-.464-.668-.65-.255-.187-.554-.347-.892-.474-.34-.13-.708-.226-1.107-.292-.402-.064-.836-.097-1.31-.097zm-.062 5.05c.413 0 .79.04 1.13.122.34.082.65.196.93.343v.42c0 .375-.043.7-.13.974-.082.27-.213.524-.395.756-.182.234-.402.43-.66.6-.26.166-.555.297-.886.397-.33.097-.7.146-1.11.146-.396 0-.713-.092-.95-.276-.236-.184-.354-.475-.354-.872 0-.272.058-.51.176-.71.115-.205.286-.382.5-.526.218-.144.483-.27.794-.378.31-.108.66-.194 1.045-.255.385-.06.79-.108 1.21-.146.39-.034.756-.054 1.082-.054l-.024-.005c.103-.005.198-.013.273-.024-.046.018-.105.024-.183.024-.18 0-.36-.014-.448-.05Z"/></svg>
+            </a>
+          </li>
+        )}
+      </ul>
+    )}
   </div>
   <div class="project-carousel">
     <ImageCarousel images={images} projectName={name} />
@@ -63,6 +111,33 @@ const descriptionHtml = description.replace(
     font-size: 1.05rem;
     line-height: 1.7;
     margin-top: 0.5rem;
+  }
+
+  .project-links {
+    list-style: none;
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    padding: 0;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+
+  .link-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+    opacity: 1;
   }
 
   @media (max-width: 768px) {
