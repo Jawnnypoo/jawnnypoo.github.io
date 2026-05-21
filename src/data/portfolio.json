@@ -4,7 +4,7 @@
       "name": "Instacart",
       "company": "Instacart • 2018 - Present",
       "type": "professional",
-      "description": "For Instacart, I spent a year and a half on the growth team, working on revamping login/sign up to a version 2, which allowed it to be controlled by the server, reordering fields and specifying configuration like password requirements dynamically from the backend. After that came Search, which includes both autosuggest and search results, as well as cross retailer search.",
+      "description": "At Instacart, I spent a year and a half on the growth team, working on revamping login/sign up to a version 2, which allowed it to be controlled by the server, reordering fields and specifying configuration like password requirements dynamically from the backend. After that came Search, which includes both autosuggest and search results, as well as cross retailer search. Then, on to the CarrotAI/Chatbot team where we integrated LLM results into search and created an interactive Chatbot in the app. Next up, the SRX (Single Retailer Experience) team where we worked within Storefront, item details and more to enhance the experience. And now, most recently on the Meals team, where we are building out a zero to one effort to give people access to the meals they love within the app.",
       "color": "#2A2A2A",
       "images": [
         "instacart_1.png",
@@ -288,7 +288,7 @@
     {
       "name": "PhysicsLayout",
       "company": "Jawnnypoo • 2015 - Present",
-      "type": "library",
+      "type": "community",
       "description": "Android layout that simulates physics using JBox2D. This library aims to help that middle ground of \"I want to add a fun physics type thing to my app, but don't want to invest in OpenGL or an entire game engine\". Surprisingly performant, you can see that many views can all be bouncing around at once without stuttering. Add in a gravity sensor, and then you can make the views slide around with gravity! Fun stuff.",
       "color": "#FF493266",
       "images": [
@@ -304,7 +304,7 @@
     {
       "name": "QuickActionView",
       "company": "Commit 451 • 2016 - Present",
-      "type": "library",
+      "type": "community",
       "description": "View that shows quick actions when long pressed, inspired by Pinterest. Long press a view, and quick actions to take are shown, overlayed on top of any given view. It even does fancy math to know if it is on the left side of the screen and can display actions to the right, or if it is on the right side of the screen and needs to display actions on the left. Neat!",
       "color": "#FF493266",
       "images": [
@@ -319,7 +319,7 @@
     {
       "name": "ResourcesPoet",
       "company": "Commit 451 • 2016 - Present",
-      "type": "library",
+      "type": "community",
       "description": "Kotlin API for generating Android XML Resources. This can make creating Android apps or generating Android resources via command line or other means very easy. Used by Uber in their [stylist](https://github.com/uber/stylist) library, and by Adidas in their Android codebase.",
       "color": "#FF493266",
       "images": [

@@ -8,7 +8,7 @@ const gravatarUrl = 'https://www.gravatar.com/avatar/66372cf8a4b4dfad56d5dc4ddd4
 
 const professionalProjects = portfolioData.projects.filter(p => p.type === 'professional');
 const personalProjects = portfolioData.projects.filter(p => p.type === 'personal');
-const libraryProjects = portfolioData.projects.filter(p => p.type === 'library');
+const communityProjects = portfolioData.projects.filter(p => p.type === 'community');
 ---
 
 <BaseLayout title="John Carlson @Jawnnypoo">
@@ -67,7 +67,7 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
       <nav class="tabs" aria-label="Project categories">
         <button class="tab active" data-type="professional">Professional</button>
         <button class="tab" data-type="personal">Personal</button>
-        <button class="tab" data-type="library">Libraries</button>
+        <button class="tab" data-type="community">Community</button>
       </nav>
 
       <hr class="divider" />
@@ -96,8 +96,8 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
         ))}
       </section>
 
-      <section class="projects-section hidden" data-section="library">
-        {libraryProjects.map(project => (
+      <section class="projects-section hidden" data-section="community">
+        {communityProjects.map(project => (
           <ProjectCard
             name={project.name}
             company={project.company}
