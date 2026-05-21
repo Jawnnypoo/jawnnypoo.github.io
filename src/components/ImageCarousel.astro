@@ -11,13 +11,13 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
 <div class="carousel" id={carouselId}>
   <div class="carousel-track">
     {images.map((img, i) => (
-      <a href={`/images/${img}`} target="_blank" class="carousel-slide">
+      <button type="button" class="carousel-slide" data-full={`/images/${img}`}>
         <img
           src={`/images/${img}`}
           alt={`${projectName} screenshot ${i + 1}`}
           loading="lazy"
         />
-      </a>
+      </button>
     ))}
   </div>
   {images.length > 1 && (
@@ -52,6 +52,9 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: zoom-in;
   }
 
   .carousel-slide img {
@@ -141,6 +144,121 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
       dots.forEach((dot) => {
         dot.addEventListener('click', () => goTo(Number(dot.dataset.index)));
       });
+
+      carousel.querySelectorAll<HTMLButtonElement>('.carousel-slide').forEach((slide) => {
+        slide.addEventListener('click', () => {
+          const src = slide.dataset.full;
+          const img = slide.querySelector('img');
+          if (src) openLightbox(src, img?.alt ?? '');
+        });
+      });
     });
   }
+
+  let lightboxEl: HTMLDivElement | null = null;
+
+  function ensureLightbox(): HTMLDivElement {
+    if (lightboxEl) return lightboxEl;
+    const el = document.createElement('div');
+    el.className = 'lightbox';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-modal', 'true');
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = `
+      <button type="button" class="lightbox-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+      <img class="lightbox-img" alt="" />
+    `;
+    el.addEventListener('click', (e) => {
+      if (e.target === el) closeLightbox();
+    });
+    el.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && el.classList.contains('open')) closeLightbox();
+    });
+    document.body.appendChild(el);
+    lightboxEl = el;
+    return el;
+  }
+
+  function openLightbox(src: string, alt: string) {
+    const el = ensureLightbox();
+    const img = el.querySelector<HTMLImageElement>('.lightbox-img');
+    if (img) {
+      img.src = src;
+      img.alt = alt;
+    }
+    el.classList.add('open');
+    el.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightboxEl) return;
+    lightboxEl.classList.remove('open');
+    lightboxEl.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
 </script>
+
+<style is:global>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .lightbox.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    left: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 1001;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: scale(1.05);
+  }
+
+  .lightbox-close:active {
+    transform: scale(0.96);
+  }
+</style>
