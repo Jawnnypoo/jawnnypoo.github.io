@@ -1,0 +1,352 @@
+---
+interface Props {
+  src?: string;
+}
+
+const { src = '/images/bg-skater.jpg' } = Astro.props;
+---
+
+<canvas class="dynamic-bg" data-src={src} aria-hidden="true"></canvas>
+<div class="dynamic-bg-fallback" aria-hidden="true"></div>
+
+<style>
+  .dynamic-bg,
+  .dynamic-bg-fallback {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .dynamic-bg-fallback {
+    background: #150603;
+    z-index: -2;
+  }
+
+  .dynamic-bg {
+    display: block;
+  }
+</style>
+
+<script>
+  const VERTEX_SHADER = `
+    attribute vec2 a_position;
+    varying vec2 v_uv;
+    void main() {
+      v_uv = a_position * 0.5 + 0.5;
+      gl_Position = vec4(a_position, 0.0, 1.0);
+    }
+  `;
+
+  const FRAGMENT_SHADER = `
+    precision mediump float;
+
+    varying vec2 v_uv;
+
+    uniform sampler2D u_image;
+    uniform vec2 u_resolution;
+    uniform vec2 u_imageResolution;
+    uniform vec2 u_mouse;
+    uniform float u_time;
+    uniform float u_mouseActive;
+    uniform float u_intensity;
+
+    float hash(vec2 p) {
+      return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+    }
+
+    float noise(vec2 p) {
+      vec2 i = floor(p);
+      vec2 f = fract(p);
+      vec2 u = f * f * (3.0 - 2.0 * f);
+      return mix(
+        mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),
+        mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+        u.y
+      );
+    }
+
+    void main() {
+      vec2 uv = v_uv;
+      uv.y = 1.0 - uv.y;
+
+      // Cover-fit image to canvas
+      float canvasAspect = u_resolution.x / u_resolution.y;
+      float imageAspect = u_imageResolution.x / u_imageResolution.y;
+      vec2 imgUv = uv;
+      if (canvasAspect > imageAspect) {
+        float scale = imageAspect / canvasAspect;
+        imgUv.y = (uv.y - 0.5) * scale + 0.5;
+      } else {
+        float scale = canvasAspect / imageAspect;
+        imgUv.x = (uv.x - 0.5) * scale + 0.5;
+      }
+
+      // ---- TV-line tear distortion ----
+      // The image is broken into ~80 horizontal bands; each band can shift
+      // horizontally based on per-band noise + cursor-row proximity.
+      float bandCount = 90.0;
+      float bandY = floor(uv.y * bandCount);
+
+      // Slow random phase per band — changes every ~0.4s so tears feel like jitter
+      float epoch = floor(u_time * 2.5);
+      float bandRand = hash(vec2(bandY, epoch));
+      float bandRand2 = hash(vec2(bandY, epoch + 31.7));
+
+      // Cursor Y creates a "hot band" — rows near the cursor Y tear more often/harder.
+      float mouseRowDist = abs(uv.y - u_mouse.y);
+      float mouseBand = exp(-mouseRowDist * 7.0) * u_mouseActive;
+
+      // Baseline subtle wobble for every row (very small)
+      float baseShift = (hash(vec2(bandY, epoch + 7.3)) - 0.5) * 0.004;
+
+      // Strong tear when bandRand crosses a threshold; threshold is lower near cursor
+      float tearThreshold = 0.93 - mouseBand * 0.35;
+      float tearActive = step(tearThreshold, bandRand);
+      float tearShift = (bandRand2 - 0.5) * (0.10 + mouseBand * 0.18) * tearActive;
+
+      // Always-on micro hot-row shake near the cursor
+      float hotShake = (hash(vec2(bandY, floor(u_time * 18.0))) - 0.5) * 0.045 * mouseBand;
+
+      float xShift = (baseShift + tearShift + hotShake) * u_intensity;
+      imgUv.x += xShift;
+
+      // Clamp to avoid sampling outside the image
+      imgUv = clamp(imgUv, vec2(0.001), vec2(0.999));
+
+      // Chromatic aberration on torn rows (RGB sampled at slightly different x)
+      float chroma = 0.006 * (tearActive + mouseBand * 0.7) * u_intensity;
+      float xR = clamp(imgUv.x - chroma, 0.001, 0.999);
+      float xB = clamp(imgUv.x + chroma, 0.001, 0.999);
+      vec3 col = vec3(
+        texture2D(u_image, vec2(xR, imgUv.y)).r,
+        texture2D(u_image, imgUv).g,
+        texture2D(u_image, vec2(xB, imgUv.y)).b
+      );
+
+      // Boost contrast a touch (fades in with intensity)
+      col = mix(col, (col - 0.5) * 1.15 + 0.5, u_intensity);
+      float lum = dot(col, vec3(0.299, 0.587, 0.114));
+
+      // Duotone orange map keyed off site primary #fd5b3b
+      vec3 darkColor  = vec3(0.045, 0.015, 0.008);
+      vec3 midColor   = vec3(0.260, 0.085, 0.045);
+      vec3 lightColor = vec3(0.860, 0.310, 0.205);
+      vec3 duotone = mix(darkColor, midColor, smoothstep(0.0, 0.55, lum));
+      duotone = mix(duotone, lightColor, smoothstep(0.55, 1.0, lum));
+
+      // Black-and-white pre-state, fade to duotone as intro plays
+      vec3 bw = vec3(lum);
+      vec3 outColor = mix(bw, duotone, u_intensity);
+
+      // Bright "hot row" highlight on torn rows (gives the tear an emissive edge)
+      outColor += vec3(0.18, 0.075, 0.045) * tearActive * u_intensity;
+      // Subtle warmth on the cursor's row band
+      outColor += vec3(0.05, 0.022, 0.014) * mouseBand * u_intensity;
+
+      // CRT scanlines — every ~2 device pixels, gentle dark/bright modulation
+      float scanline = sin(gl_FragCoord.y * 1.4) * 0.5 + 0.5;
+      outColor *= mix(1.0, mix(0.78, 1.0, scanline), u_intensity);
+
+      // Animated film grain (fades in)
+      float grain = hash(gl_FragCoord.xy + vec2(u_time * 73.0, u_time * 41.0)) - 0.5;
+      outColor += grain * 0.075 * u_intensity;
+
+      // Vignette (fades in from no darkening)
+      vec2 vUv = uv - 0.5;
+      float vig = smoothstep(0.95, 0.25, length(vUv * vec2(1.1, 1.3)));
+      outColor *= mix(1.0, mix(0.35, 1.0, vig), u_intensity);
+
+      gl_FragColor = vec4(outColor, 1.0);
+    }
+  `;
+
+  function init() {
+    const canvas = document.querySelector<HTMLCanvasElement>('canvas.dynamic-bg');
+    if (!canvas) return;
+
+    const gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false });
+    if (!gl) {
+      canvas.remove();
+      return;
+    }
+
+    const src = canvas.dataset.src || '/images/bg-skater.jpg';
+
+    function compileShader(type: number, source: string) {
+      const shader = gl!.createShader(type)!;
+      gl!.shaderSource(shader, source);
+      gl!.compileShader(shader);
+      if (!gl!.getShaderParameter(shader, gl!.COMPILE_STATUS)) {
+        console.error('Shader compile error:', gl!.getShaderInfoLog(shader));
+        gl!.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    const vs = compileShader(gl.VERTEX_SHADER, VERTEX_SHADER);
+    const fs = compileShader(gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
+    if (!vs || !fs) return;
+
+    const program = gl.createProgram()!;
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      console.error('Program link error:', gl.getProgramInfoLog(program));
+      return;
+    }
+    gl.useProgram(program);
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+      gl.STATIC_DRAW
+    );
+
+    const posLoc = gl.getAttribLocation(program, 'a_position');
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const uResolution = gl.getUniformLocation(program, 'u_resolution');
+    const uImageResolution = gl.getUniformLocation(program, 'u_imageResolution');
+    const uMouse = gl.getUniformLocation(program, 'u_mouse');
+    const uTime = gl.getUniformLocation(program, 'u_time');
+    const uMouseActive = gl.getUniformLocation(program, 'u_mouseActive');
+    const uIntensity = gl.getUniformLocation(program, 'u_intensity');
+    const uImage = gl.getUniformLocation(program, 'u_image');
+
+    // 1x1 placeholder texture so we can render before the image loads
+    const texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(
+      gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+      new Uint8Array([21, 6, 3, 255])
+    );
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.uniform1i(uImage, 0);
+
+    let imageW = 1;
+    let imageH = 1;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const INTRO_DURATION_MS = reduceMotion ? 0 : 1800;
+    let introStart = 0;
+    let introStarted = false;
+
+    function startIntro() {
+      if (introStarted) return;
+      introStarted = true;
+      introStart = performance.now();
+      document.body.classList.add('intro-ready');
+    }
+
+    const image = new Image();
+    image.crossOrigin = 'anonymous';
+    image.onload = () => {
+      imageW = image.naturalWidth;
+      imageH = image.naturalHeight;
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+      startIntro();
+    };
+    image.src = src;
+    // Safety net in case the image takes too long: kick the intro after 800ms anyway
+    setTimeout(startIntro, 800);
+
+    let width = 0;
+    let height = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas!.width = Math.floor(width * dpr);
+      canvas!.height = Math.floor(height * dpr);
+      canvas!.style.width = width + 'px';
+      canvas!.style.height = height + 'px';
+      gl!.viewport(0, 0, canvas!.width, canvas!.height);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Mouse: target = raw, current = lerped, so motion feels smooth
+    let mouseTargetX = 0.5;
+    let mouseTargetY = 0.5;
+    let mouseX = 0.5;
+    let mouseY = 0.5;
+    let mouseActiveTarget = 0;
+    let mouseActive = 0;
+
+    function onPointer(e: PointerEvent) {
+      mouseTargetX = e.clientX / window.innerWidth;
+      mouseTargetY = e.clientY / window.innerHeight;
+      mouseActiveTarget = 1;
+    }
+    function onLeave() { mouseActiveTarget = 0; }
+    function onTouch(e: TouchEvent) {
+      if (e.touches.length === 0) return;
+      const t = e.touches[0];
+      mouseTargetX = t.clientX / window.innerWidth;
+      mouseTargetY = t.clientY / window.innerHeight;
+      mouseActiveTarget = 1;
+    }
+    window.addEventListener('pointermove', onPointer);
+    window.addEventListener('pointerdown', onPointer);
+    window.addEventListener('pointerleave', onLeave);
+    window.addEventListener('blur', onLeave);
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    window.addEventListener('touchstart', onTouch, { passive: true });
+
+    const start = performance.now();
+    let running = true;
+
+    document.addEventListener('visibilitychange', () => {
+      running = !document.hidden;
+      if (running) requestAnimationFrame(render);
+    });
+
+    function render() {
+      if (!running) return;
+      const now = performance.now();
+      const t = (now - start) / 1000;
+
+      // Lerp for smooth motion
+      mouseX += (mouseTargetX - mouseX) * 0.12;
+      mouseY += (mouseTargetY - mouseY) * 0.12;
+      mouseActive += (mouseActiveTarget - mouseActive) * 0.08;
+
+      // Intro intensity: 0 -> 1 over INTRO_DURATION_MS, cubic ease-out
+      let intensity = 0;
+      if (introStarted) {
+        const p = Math.min(1, (now - introStart) / INTRO_DURATION_MS);
+        intensity = 1 - Math.pow(1 - p, 3);
+      }
+
+      gl!.uniform2f(uResolution, canvas!.width, canvas!.height);
+      gl!.uniform2f(uImageResolution, imageW, imageH);
+      gl!.uniform2f(uMouse, mouseX, mouseY);
+      gl!.uniform1f(uTime, t);
+      gl!.uniform1f(uMouseActive, mouseActive);
+      gl!.uniform1f(uIntensity, intensity);
+
+      gl!.drawArrays(gl!.TRIANGLES, 0, 6);
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
