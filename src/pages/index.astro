@@ -12,9 +12,24 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
 ---
 
 <BaseLayout title="John Carlson @Jawnnypoo">
+  <!-- Sticky top bar — morphs in as the hero card scrolls away. Click to scroll back to top. -->
+  <button class="topbar" id="topbar" type="button" aria-label="Scroll to top" aria-hidden="true" tabindex="-1">
+    <img
+      src={`${gravatarUrl}?s=80`}
+      alt=""
+      class="topbar-avatar"
+      width="40"
+      height="40"
+    />
+    <span class="topbar-text">
+      <span class="topbar-name">John Carlson</span>
+      <span class="topbar-handle">@Jawnnypoo</span>
+    </span>
+  </button>
+
   <!-- Hero -->
   <section class="hero">
-    <div class="card">
+    <div class="card" id="hero-card">
       <img
         src={`${gravatarUrl}?s=512`}
         alt="John Carlson"
@@ -125,6 +140,129 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
 </BaseLayout>
 
 <style>
+  /* --- Sticky top bar (morph target of the hero card) --- */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    height: 64px;
+    padding: 0.5rem 1.25rem;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06) 0%,
+        rgba(0, 0, 0, 0.22) 100%
+      ),
+      rgba(22, 14, 12, 0.78);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+
+    color: var(--color-text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+      opacity 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+      background-color 0.2s ease;
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .topbar {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(0, 0, 0, 0.25) 100%
+        ),
+        rgba(22, 14, 12, 0.95);
+    }
+  }
+
+  .topbar.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .topbar:hover {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(0, 0, 0, 0.22) 100%
+      ),
+      rgba(22, 14, 12, 0.88);
+  }
+
+  .topbar:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -4px;
+  }
+
+  .topbar-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .topbar-text {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.2;
+    min-width: 0;
+  }
+
+  .topbar-name {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .topbar-handle {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 420px) {
+    .topbar-handle {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .topbar {
+      transition: opacity 0.2s linear;
+      transform: translateY(0);
+    }
+    .topbar:not(.visible) {
+      opacity: 0;
+    }
+  }
+
   /* --- Hero --- */
   .hero {
     min-height: 100vh;
@@ -406,6 +544,8 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
 <script>
   document.addEventListener('DOMContentLoaded', initTabs);
   document.addEventListener('astro:page-load', initTabs);
+  document.addEventListener('DOMContentLoaded', initTopbar);
+  document.addEventListener('astro:page-load', initTopbar);
 
   function initTabs() {
     const tabs = document.querySelectorAll<HTMLButtonElement>('.tab');
@@ -423,5 +563,42 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
         });
       });
     });
+  }
+
+  function initTopbar() {
+    const topbar = document.getElementById('topbar') as HTMLButtonElement | null;
+    const heroCard = document.getElementById('hero-card');
+    if (!topbar || !heroCard) return;
+
+    topbar.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    let ticking = false;
+    let visible = false;
+
+    function update() {
+      ticking = false;
+      const rect = heroCard!.getBoundingClientRect();
+      // Reveal the topbar once the hero card's vertical midpoint has scrolled
+      // above the viewport top — gives a "morph" handoff as the card leaves.
+      const shouldShow = rect.top + rect.height / 2 < 0;
+      if (shouldShow === visible) return;
+      visible = shouldShow;
+      topbar!.classList.toggle('visible', visible);
+      topbar!.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      topbar!.tabIndex = visible ? 0 : -1;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
   }
 </script>
