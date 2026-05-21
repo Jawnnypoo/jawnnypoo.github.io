@@ -148,14 +148,16 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
       carousel.querySelectorAll<HTMLButtonElement>('.carousel-slide').forEach((slide) => {
         slide.addEventListener('click', () => {
           const src = slide.dataset.full;
-          const img = slide.querySelector('img');
-          if (src) openLightbox(src, img?.alt ?? '');
+          const img = slide.querySelector('img') as HTMLImageElement | null;
+          if (src && img) openLightbox(src, img.alt, img);
         });
       });
     });
   }
 
+  const MORPH_NAME = 'lightbox-image';
   let lightboxEl: HTMLDivElement | null = null;
+  let sourceImg: HTMLImageElement | null = null;
 
   function ensureLightbox(): HTMLDivElement {
     if (lightboxEl) return lightboxEl;
@@ -184,23 +186,65 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
     return el;
   }
 
-  function openLightbox(src: string, alt: string) {
+  function openLightbox(src: string, alt: string, source: HTMLImageElement) {
     const el = ensureLightbox();
     const img = el.querySelector<HTMLImageElement>('.lightbox-img');
-    if (img) {
-      img.src = src;
-      img.alt = alt;
+    if (!img) return;
+    img.src = src;
+    img.alt = alt;
+    sourceImg = source;
+
+    const apply = () => {
+      el.classList.add('open');
+      el.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const vt = (document as any).startViewTransition;
+    if (!reduced && typeof vt === 'function') {
+      source.style.viewTransitionName = MORPH_NAME;
+      img.style.viewTransitionName = MORPH_NAME;
+      const transition = vt.call(document, () => {
+        source.style.viewTransitionName = '';
+        apply();
+      });
+      transition.finished.finally(() => {
+        if (img) img.style.viewTransitionName = '';
+      });
+    } else {
+      apply();
     }
-    el.classList.add('open');
-    el.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     if (!lightboxEl) return;
-    lightboxEl.classList.remove('open');
-    lightboxEl.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    const img = lightboxEl.querySelector<HTMLImageElement>('.lightbox-img');
+
+    const apply = () => {
+      lightboxEl!.classList.remove('open');
+      lightboxEl!.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const vt = (document as any).startViewTransition;
+    if (!reduced && typeof vt === 'function' && img && sourceImg) {
+      const returnTo = sourceImg;
+      img.style.viewTransitionName = MORPH_NAME;
+      const transition = vt.call(document, () => {
+        img.style.viewTransitionName = '';
+        returnTo.style.viewTransitionName = MORPH_NAME;
+        apply();
+      });
+      transition.finished.finally(() => {
+        returnTo.style.viewTransitionName = '';
+        sourceImg = null;
+      });
+    } else {
+      apply();
+      sourceImg = null;
+    }
   }
 </script>
 
@@ -260,5 +304,19 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
 
   .lightbox-close:active {
     transform: scale(0.96);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(lightbox-image),
+    ::view-transition-new(lightbox-image) {
+      animation-duration: 360ms;
+      animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 260ms;
+      animation-timing-function: ease;
+    }
   }
 </style>
