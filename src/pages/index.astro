@@ -23,7 +23,10 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
         height="200"
       />
 
-      <h1 class="logo">John Carlson @Jawnnypoo</h1>
+      <h1 class="logo">
+        John Carlson
+        <span class="handle">@Jawnnypoo</span>
+      </h1>
 
       <p class="bio">
         Hey there, I'm John.
@@ -198,6 +201,15 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
     font-size: clamp(1.25rem, 3vw, 2.25rem);
     font-weight: 700;
     line-height: 1.2;
+  }
+
+  .logo .handle {
+    display: block;
+    margin-top: 0.4rem;
+    font-weight: 400;
+    font-size: 0.6em;
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
   }
 
   .bio {

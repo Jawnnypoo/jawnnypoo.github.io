@@ -7,7 +7,10 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
 ---
 
 <canvas class="dynamic-bg" data-src={src} aria-hidden="true"></canvas>
-<div class="dynamic-bg-fallback" aria-hidden="true"></div>
+<div class="dynamic-bg-fallback" aria-hidden="true">
+  <div class="dynamic-bg-image" style={`background-image: url(${src})`}></div>
+  <div class="dynamic-bg-tint"></div>
+</div>
 
 <style>
   .dynamic-bg,
@@ -16,17 +19,45 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
     inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
     pointer-events: none;
   }
 
-  .dynamic-bg-fallback {
-    background: #150603;
-    z-index: -2;
+  .dynamic-bg {
+    z-index: -1;
+    display: block;
   }
 
-  .dynamic-bg {
-    display: block;
+  .dynamic-bg-fallback {
+    z-index: -2;
+    background: #0a0403;
+    overflow: hidden;
+  }
+
+  .dynamic-bg-image,
+  .dynamic-bg-tint {
+    position: absolute;
+    inset: 0;
+  }
+
+  .dynamic-bg-image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: grayscale(1) brightness(0.78) contrast(1.15);
+  }
+
+  .dynamic-bg-tint {
+    background:
+      radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.55) 100%),
+      linear-gradient(180deg, rgba(253, 91, 59, 0.55) 0%, rgba(90, 22, 14, 0.55) 100%);
+    mix-blend-mode: multiply;
+  }
+
+  /* Touch devices: skip the shader entirely and rely on the static fallback */
+  @media (hover: none) and (pointer: coarse) {
+    .dynamic-bg {
+      display: none;
+    }
   }
 </style>
 
@@ -50,7 +81,7 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
     uniform vec2 u_imageResolution;
     uniform vec2 u_mouse;
     uniform float u_time;
-    uniform float u_mouseActive;
+    uniform float u_motion;
     uniform float u_intensity;
 
     float hash(vec2 p) {
@@ -96,15 +127,17 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
       float bandRand2 = hash(vec2(bandY, epoch + 31.7));
 
       // Cursor Y creates a "hot band" — rows near the cursor Y tear more often/harder.
+      // Gated on u_motion so it only acts while the mouse is actively moving.
       float mouseRowDist = abs(uv.y - u_mouse.y);
-      float mouseBand = exp(-mouseRowDist * 7.0) * u_mouseActive;
+      float mouseBand = exp(-mouseRowDist * 7.0) * u_motion;
 
-      // Baseline subtle wobble for every row (very small)
-      float baseShift = (hash(vec2(bandY, epoch + 7.3)) - 0.5) * 0.004;
+      // Baseline subtle wobble for every row (only while moving)
+      float baseShift = (hash(vec2(bandY, epoch + 7.3)) - 0.5) * 0.004 * u_motion;
 
-      // Strong tear when bandRand crosses a threshold; threshold is lower near cursor
+      // Strong tear when bandRand crosses a threshold; threshold is lower near cursor.
+      // The whole tear is scaled by u_motion so the image is static when the mouse is still.
       float tearThreshold = 0.93 - mouseBand * 0.35;
-      float tearActive = step(tearThreshold, bandRand);
+      float tearActive = step(tearThreshold, bandRand) * u_motion;
       float tearShift = (bandRand2 - 0.5) * (0.10 + mouseBand * 0.18) * tearActive;
 
       // Always-on micro hot-row shake near the cursor
@@ -163,13 +196,27 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
     }
   `;
 
+  function triggerStaticIntro() {
+    // CSS fallback is already visible; just slide the card in.
+    document.body.classList.add('intro-ready');
+  }
+
   function init() {
     const canvas = document.querySelector<HTMLCanvasElement>('canvas.dynamic-bg');
     if (!canvas) return;
 
+    // Touch devices: skip WebGL — the static CSS fallback handles the background.
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (isTouchDevice) {
+      canvas.remove();
+      triggerStaticIntro();
+      return;
+    }
+
     const gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false });
     if (!gl) {
       canvas.remove();
+      triggerStaticIntro();
       return;
     }
 
@@ -217,7 +264,7 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
     const uImageResolution = gl.getUniformLocation(program, 'u_imageResolution');
     const uMouse = gl.getUniformLocation(program, 'u_mouse');
     const uTime = gl.getUniformLocation(program, 'u_time');
-    const uMouseActive = gl.getUniformLocation(program, 'u_mouseActive');
+    const uMotion = gl.getUniformLocation(program, 'u_motion');
     const uIntensity = gl.getUniformLocation(program, 'u_intensity');
     const uImage = gl.getUniformLocation(program, 'u_image');
 
@@ -278,26 +325,41 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
     resize();
     window.addEventListener('resize', resize);
 
-    // Mouse: target = raw, current = lerped, so motion feels smooth
+    // Mouse position (lerped) + motion (velocity-based, decays to 0 when still)
     let mouseTargetX = 0.5;
     let mouseTargetY = 0.5;
     let mouseX = 0.5;
     let mouseY = 0.5;
-    let mouseActiveTarget = 0;
-    let mouseActive = 0;
+    let motionTarget = 0;
+    let motion = 0;
+    let lastEventX = -1;
+    let lastEventY = -1;
 
+    function pumpMotion(x: number, y: number) {
+      if (lastEventX >= 0) {
+        const dx = x - lastEventX;
+        const dy = y - lastEventY;
+        const dist = Math.hypot(dx, dy);
+        motionTarget = Math.min(1, motionTarget + dist * 0.04);
+      }
+      lastEventX = x;
+      lastEventY = y;
+    }
     function onPointer(e: PointerEvent) {
       mouseTargetX = e.clientX / window.innerWidth;
       mouseTargetY = e.clientY / window.innerHeight;
-      mouseActiveTarget = 1;
+      pumpMotion(e.clientX, e.clientY);
     }
-    function onLeave() { mouseActiveTarget = 0; }
+    function onLeave() {
+      lastEventX = -1;
+      lastEventY = -1;
+    }
     function onTouch(e: TouchEvent) {
       if (e.touches.length === 0) return;
       const t = e.touches[0];
       mouseTargetX = t.clientX / window.innerWidth;
       mouseTargetY = t.clientY / window.innerHeight;
-      mouseActiveTarget = 1;
+      pumpMotion(t.clientX, t.clientY);
     }
     window.addEventListener('pointermove', onPointer);
     window.addEventListener('pointerdown', onPointer);
@@ -319,10 +381,14 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
       const now = performance.now();
       const t = (now - start) / 1000;
 
-      // Lerp for smooth motion
+      // Smooth position
       mouseX += (mouseTargetX - mouseX) * 0.12;
       mouseY += (mouseTargetY - mouseY) * 0.12;
-      mouseActive += (mouseActiveTarget - mouseActive) * 0.08;
+
+      // Motion budget decays each frame (~0.5s to fade after the mouse stops),
+      // smoothed via a lerp so the ramp-up/ramp-down isn't jagged.
+      motionTarget *= 0.92;
+      motion += (motionTarget - motion) * 0.25;
 
       // Intro intensity: 0 -> 1 over INTRO_DURATION_MS, cubic ease-out
       let intensity = 0;
@@ -335,7 +401,7 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
       gl!.uniform2f(uImageResolution, imageW, imageH);
       gl!.uniform2f(uMouse, mouseX, mouseY);
       gl!.uniform1f(uTime, t);
-      gl!.uniform1f(uMouseActive, mouseActive);
+      gl!.uniform1f(uMotion, motion);
       gl!.uniform1f(uIntensity, intensity);
 
       gl!.drawArrays(gl!.TRIANGLES, 0, 6);
