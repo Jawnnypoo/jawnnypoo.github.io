@@ -6,54 +6,42 @@ interface Props {
 const { src = '/images/bg-skater.jpg' } = Astro.props;
 ---
 
+<div class="dynamic-bg-static" aria-hidden="true" style={`--bg-url: url("${src}")`}></div>
 <canvas class="dynamic-bg" data-src={src} aria-hidden="true"></canvas>
-<div class="dynamic-bg-fallback" aria-hidden="true">
-  <div class="dynamic-bg-image" style={`background-image: url(${src})`}></div>
-  <div class="dynamic-bg-tint"></div>
-</div>
 
 <style>
   .dynamic-bg,
-  .dynamic-bg-fallback {
+  .dynamic-bg-static {
     position: fixed;
     inset: 0;
-    width: 100vw;
-    height: 100vh;
     pointer-events: none;
   }
 
-  .dynamic-bg {
-    z-index: -1;
-    display: block;
-  }
-
-  .dynamic-bg-fallback {
+  /* Static fallback — always rendered. Single element, mobile-safe.
+     background-blend-mode is supported on iOS Safari since iOS 8 and avoids
+     the position:fixed + nested mix-blend-mode bug that broke the prior version. */
+  .dynamic-bg-static {
     z-index: -2;
-    background: #0a0403;
-    overflow: hidden;
-  }
-
-  .dynamic-bg-image,
-  .dynamic-bg-tint {
-    position: absolute;
-    inset: 0;
-  }
-
-  .dynamic-bg-image {
+    background-color: #c8482e;
+    background-image:
+      radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.55) 100%),
+      var(--bg-url);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    filter: grayscale(1) brightness(0.78) contrast(1.15);
+    background-blend-mode: multiply, luminosity;
   }
 
-  .dynamic-bg-tint {
-    background:
-      radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.55) 100%),
-      linear-gradient(180deg, rgba(253, 91, 59, 0.55) 0%, rgba(90, 22, 14, 0.55) 100%);
-    mix-blend-mode: multiply;
+  /* WebGL canvas sits on top of the static fallback on desktop;
+     covers it completely while the shader runs. */
+  .dynamic-bg {
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
-  /* Touch devices: skip the shader entirely and rely on the static fallback */
+  /* Mobile / touch: hide the canvas so the static fallback shows through. */
   @media (hover: none) and (pointer: coarse) {
     .dynamic-bg {
       display: none;
@@ -201,13 +189,24 @@ const { src = '/images/bg-skater.jpg' } = Astro.props;
     document.body.classList.add('intro-ready');
   }
 
+  function isMobileDevice() {
+    if (typeof window === 'undefined') return false;
+    // Primary signal: touch + coarse pointer (mobile/tablet input model).
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return true;
+    // Safety net: user agent sniff for phones/tablets (catches iPads in
+    // "Desktop Site" mode and any browser that mis-reports input capabilities).
+    if (/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(navigator.userAgent)) return true;
+    // iPadOS 13+ reports as Mac in UA; this catches that specifically.
+    if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) return true;
+    return false;
+  }
+
   function init() {
     const canvas = document.querySelector<HTMLCanvasElement>('canvas.dynamic-bg');
     if (!canvas) return;
 
-    // Touch devices: skip WebGL — the static CSS fallback handles the background.
-    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    if (isTouchDevice) {
+    // Mobile: skip WebGL entirely. The static CSS fallback already shows the background.
+    if (isMobileDevice()) {
       canvas.remove();
       triggerStaticIntro();
       return;
