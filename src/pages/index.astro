@@ -543,9 +543,7 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
 
 <script>
   document.addEventListener('DOMContentLoaded', initTabs);
-  document.addEventListener('astro:page-load', initTabs);
   document.addEventListener('DOMContentLoaded', initTopbar);
-  document.addEventListener('astro:page-load', initTopbar);
 
   function initTabs() {
     const tabs = document.querySelectorAll<HTMLButtonElement>('.tab');
