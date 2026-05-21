@@ -11,7 +11,7 @@ const personalProjects = portfolioData.projects.filter(p => p.type === 'personal
 const libraryProjects = portfolioData.projects.filter(p => p.type === 'library');
 ---
 
-<BaseLayout title="John Carlson | @Jawnnypoo">
+<BaseLayout title="John Carlson @Jawnnypoo">
   <!-- Hero -->
   <section class="hero">
     <div class="card">
@@ -23,7 +23,7 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
         height="200"
       />
 
-      <h1 class="logo">John Carlson | @Jawnnypoo</h1>
+      <h1 class="logo">John Carlson @Jawnnypoo</h1>
 
       <p class="bio">
         Hey there, I'm John.
@@ -57,7 +57,7 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
       <div class="intro">
         <h2 class="section-title">Portfolio</h2>
         <p class="intro-text">
-          Here is a sample of some work I've done, professionally and personally. I've also done tons of work as an open sourcerer, which is up on GitHub under both <a href="https://github.com/Jawnnypoo" target="_blank" rel="noopener noreferrer">Jawnnypoo</a> and <a href="https://github.com/Commit451" target="_blank" rel="noopener noreferrer">Commit 451</a>. Android is my passion, but I also have experience in Typescript and Flutter (this site is created with Astro!). Please reach out if you would like a more formal resume as a PDF.
+          Here is a sample of some work I've done, professionally and personally. I've also done tons of work as an open sourcerer, which is up on GitHub under both <a href="https://github.com/Jawnnypoo" target="_blank" rel="noopener noreferrer">Jawnnypoo</a> and <a href="https://github.com/Commit451" target="_blank" rel="noopener noreferrer">Commit 451</a>. Android/Kotlin is my passion, but I have experience in all kinds of technologies including Typescript, Ruby and Flutter, CI/CD via GitHub Actions and GitLab Pipelines, and local LLMs. Please reach out if you would like a more formal resume as a PDF.
         </p>
       </div>
 
@@ -106,7 +106,15 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; John Carlson {year}</p>
+    <div class="footer-meta">
+      <p>&copy; John Carlson {year}</p>
+      <p>
+        Source on <a href="https://github.com/Jawnnypoo/jawnnypoo.github.io" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
+    </div>
+    <svg class="footer-quote" viewBox="0 0 480 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <text x="0" y="80" textLength="480" lengthAdjust="spacingAndGlyphs">We continue</text>
+    </svg>
   </footer>
 </BaseLayout>
 
@@ -337,20 +345,46 @@ const libraryProjects = portfolioData.projects.filter(p => p.type === 'library')
 
   /* --- Footer --- */
   .footer {
-    background: var(--color-primary);
-    color: white;
-    text-align: center;
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    position: relative;
+    margin: 4rem 0 0;
+    padding: 2rem 2rem 0;
+    overflow: hidden;
+    color: var(--color-text-muted);
   }
 
-  .footer a {
-    color: white;
+  .footer-meta {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 80ch;
+  }
+
+  .footer-meta p {
+    margin: 0;
+  }
+
+  .footer-meta a {
+    color: var(--color-primary);
     text-decoration: underline;
   }
 
-  .footer a:hover {
+  .footer-meta a:hover {
     opacity: 0.85;
+  }
+
+  .footer-quote {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0 0;
+    overflow: visible;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .footer-quote text {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 100px;
+    fill: rgba(255, 240, 225, 0.07);
   }
 </style>
 
