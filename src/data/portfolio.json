@@ -202,8 +202,8 @@
       }
     },
     {
-      "name": "Linkipedia • 2015",
-      "company": "Commit 451 • 2026 - Present",
+      "name": "Linkipedia",
+      "company": "Commit 451 • 2015 - 2020",
       "type": "app",
       "description": "Wikipedia fun! A race from one subject to another by clicking links within Wikipedia articles. After playing this game with friends using our browsers, we decided it would be a fun app to create.",
       "images": [
@@ -311,7 +311,7 @@
     },
     {
       "name": "Skyhook",
-      "company": "Commit 451 • 2026 - Present",
+      "company": "Commit 451 • 2018 - Present",
       "type": "web",
       "description": "Skyhook parses webhooks from various services and forwards them in the proper format to Discord. It processes thousands of webhooks every day, providing people with realtime insights into their Jira tickets, Patreon alerts, etc all within their Discord server. Free, open source, powered by Typescript and Hono.",
       "images": [
