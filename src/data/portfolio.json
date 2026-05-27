@@ -86,7 +86,7 @@
     {
       "name": "Askarasu",
       "company": "Commit 451 • 2025 - Present",
-      "type": "personal",
+      "type": "app",
       "description": "You vs. the AI. Askarasu is a word trivia game with a twist — you're chatting with an AI that knows the answer, but won't just tell you. Ask yes/no questions, narrow down the possibilities, and guess the word before the day is over and the challenge expires. Think fast. Ask smart. Beat the AI. Created using Kotlin Multiplatform, Compose Multiplatform, Ktor for HTTP requests, Koog for interfacing with our AI provider, and deployed to Google Cloud Run, using RevenueCat for in app purchases, Firebase Cloud Messaging for push, and Admob for ads.",
       "images": [
         "askarasu_1.webp",
@@ -101,7 +101,7 @@
     {
       "name": "Salamander AI",
       "company": "Commit 451 • 2025 - Present",
-      "type": "personal",
+      "type": "app",
       "description": "With the power of AI, you can always have a presence at your computer. Stay productive, even when you are away from keyboard. Connect your phone to your computer, create a runner, choose a directory, and start a conversation with your AI. While it does the work, you can be out doing something you love — and when it's done, you get a push notification, ready for the next task.",
       "images": [
         "salamander_1.webp",
@@ -117,7 +117,7 @@
     {
       "name": "LabCoat",
       "company": "Commit 451 • 2015 - Present",
-      "type": "personal",
+      "type": "app",
       "description": "LabCoat is an native Android app built in Kotlin you can use to connect to and view projects hosted on a GitLab server. Currently the most starred Kotlin project on GitLab.com and the 7th most starred project of all GitLab.com repos, it was created to give back to the GitLab community, and has over 50,000 installs on the Play Store. Enjoyed by the [CTO of GitLab](https://twitter.com/dzaporozhets/status/700680242617135105). Did I mention it is open source?",
       "images": [
         "labcoat_1.png",
@@ -134,7 +134,7 @@
     {
       "name": "365 Journals",
       "company": "Commit 451 • 2015 - Present",
-      "type": "personal",
+      "type": "app",
       "description": "My wife and I created this app to help people maintain a daily journal, prompting them with 366 different questions, one for each day. When you finish out a year of entries, you come back to the same questions, and can compare what you wrote the previous year to what you wrote this year. With over 90,000 installs on the Play Store, we love to hear about how it has changed lives by giving people somewhere to focus some of their writing and feelings.",
       "images": [
         "365_1.png",
@@ -149,7 +149,7 @@
     {
       "name": "open meh",
       "company": "Commit 451 • 2016 - Present",
-      "type": "personal",
+      "type": "app",
       "description": "meh.com is a quirky site that gives you a different deal of the day every 24 hours. open meh is an open source Android app based on the meh.com API. The API sends back a \"theme\" that the app uses to dynamically color the UI for each different deal. Through creating this app, we created our open source library, Easel, which helps you tint Android views with ease.",
       "images": [
         "open_meh_1.png",
@@ -162,7 +162,7 @@
     {
       "name": "Who What Where",
       "company": "Commit 451 • 2016 - Present",
-      "type": "personal",
+      "type": "app",
       "description": "Word games can be tons of fun, and we wanted to bring that experience to mobile so that others could enjoy a good word game without needing cards, pen and paper, or even a timer. Who What Where gives you a who, a what, and a where, and it is your job to get your teammates to guess all three, and score a point for your team.",
       "images": [
         "who_what_where_1.png",
@@ -203,8 +203,8 @@
     },
     {
       "name": "Linkipedia • 2015",
-      "company": "Commit 451",
-      "type": "personal",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "app",
       "description": "Wikipedia fun! A race from one subject to another by clicking links within Wikipedia articles. After playing this game with friends using our browsers, we decided it would be a fun app to create.",
       "images": [
         "linkipedia_1.png",
@@ -232,7 +232,7 @@
     {
       "name": "GeoTune",
       "company": "Commit 451 • 2014 - 2015",
-      "type": "personal",
+      "type": "app",
       "description": "One day at work, we thought it would be cool and funny if every time our project manager walked into the office, \"Turn Down for What\" would play. With this inspiration, Commit451 created GeoTune. GeoTune lets you set geofences wherever you want and will play a notification tone or any other media when you enter that geofence.",
       "images": [
         "geotune_1.png",
@@ -269,7 +269,7 @@
     {
       "name": "PhysicsLayout",
       "company": "Jawnnypoo • 2015 - Present",
-      "type": "community",
+      "type": "library",
       "description": "Android layout that simulates physics using JBox2D. This library aims to help that middle ground of \"I want to add a fun physics type thing to my app, but don't want to invest in OpenGL or an entire game engine\". Surprisingly performant, you can see that many views can all be bouncing around at once without stuttering. Add in a gravity sensor, and then you can make the views slide around with gravity! Fun stuff.",
       "images": [
         "physics_layout_1.png",
@@ -284,7 +284,7 @@
     {
       "name": "QuickActionView",
       "company": "Commit 451 • 2016 - Present",
-      "type": "community",
+      "type": "library",
       "description": "View that shows quick actions when long pressed, inspired by Pinterest. Long press a view, and quick actions to take are shown, overlayed on top of any given view. It even does fancy math to know if it is on the left side of the screen and can display actions to the right, or if it is on the right side of the screen and needs to display actions on the left. Neat!",
       "images": [
         "qav_1.png",
@@ -298,7 +298,7 @@
     {
       "name": "ResourcesPoet",
       "company": "Commit 451 • 2016 - Present",
-      "type": "community",
+      "type": "library",
       "description": "Kotlin API for generating Android XML Resources. This can make creating Android apps or generating Android resources via command line or other means very easy. Used by Uber in their [stylist](https://github.com/uber/stylist) library, and by Adidas in their Android codebase.",
       "images": [
         "resources_poet_1.png",
@@ -307,6 +307,109 @@
       ],
       "links": {
         "github": "https://github.com/Commit451/ResourcesPoet"
+      }
+    },
+    {
+      "name": "Skyhook",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "web",
+      "description": "Skyhook parses webhooks from various services and forwards them in the proper format to Discord. It processes thousands of webhooks every day, providing people with realtime insights into their Jira tickets, Patreon alerts, etc all within their Discord server. Free, open source, powered by Typescript and Hono.",
+      "images": [
+        "skyhook_1.png"
+      ],
+      "links": {
+        "website": "https://skyhookapi.com",
+        "github": "https://github.com/Commit451/skyhook"
+      }
+    },
+    {
+      "name": "Mirror",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "web",
+      "description": "Mirror of Gradle distributions. Hosted on Cloudflare, so at times, more reliable than the standard distributions which are hosted on GitHub and prone to outages.",
+      "images": [
+        "mirror_1.png"
+      ],
+      "links": {
+        "website": "https://mirror.spaceport.work",
+        "github": "https://github.com/Commit451/mirror"
+      }
+    },
+    {
+      "name": "emoji.observer",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "web",
+      "description": "I got sick of sites that show you 15 ads when all you want to do is copy and paste an emoji. So, here is a free and open source solution.",
+      "images": [
+        "emoji_observer_1.png"
+      ],
+      "links": {
+        "website": "https://emoji.observer",
+        "github": "https://github.com/Commit451/emoji.observer"
+      }
+    },
+    {
+      "name": "tether.name",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "web",
+      "description": "tether.name helps you verify AI agent identity with signed one-time challenges, so users can quickly verify an AI agent before sharing sensitive information.",
+      "images": [
+        "tether_name_1.png"
+      ],
+      "links": {
+        "website": "https://tether.name",
+        "github": "https://github.com/tether-name"
+      }
+    },
+    {
+      "name": "mars.gripe",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "web",
+      "description": "I wanted to watch a SpaceX launch on my TV but you are forced to watch them on x.com and also cannot Chromecast natively from there. So, mars.gripe was born.",
+      "images": [
+        "mars_gripe_1.png"
+      ],
+      "links": {
+        "website": "https://mars.gripe",
+        "github": "https://github.com/Commit451/mars.gripe"
+      }
+    },
+    {
+      "name": "android-arm-build-tools",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "tool",
+      "description": "Drop-in aapt2, aidl, zipalign, and split-select binaries for Linux on ARM64 — the four Android SDK build-tools that Gradle/AGP actually invokes during a normal app build. Google's sdkmanager only ships these for linux-x86_64. On a Raspberry Pi, Asahi Linux machine, ARM Chromebook, Ampere server, or native-arm64 WSL, AGP fails with exec format error until you swap in arm64 builds. This project ships those, automatically rebuilt as upstream AOSP publishes new build-tools source tags.",
+      "images": [
+        "android_arm_build_tools_1.png"
+      ],
+      "links": {
+        "website": "https://android-arm-build-tools.commit451.com/",
+        "github": "https://github.com/Commit451/android-arm-build-tools"
+      }
+    },
+    {
+      "name": "help me m8",
+      "company": "Commit 451 • 2026 - Present",
+      "type": "tool",
+      "description": "Help for the Dirtywave M8 setup and troubleshooting on RG351V. The Dirtywave M8 is such a fun tracker/music maker, lets make it easier for anyone to try it out!",
+      "images": [
+        "help_me_m8_1.jpg",
+        "help_me_m8_2.jpg"
+      ],
+      "links": {
+        "github": "https://github.com/Commit451/help-me-m8"
+      }
+    },
+    {
+      "name": "dropbox-deployment",
+      "company": "Jawnnypoo • 2016 - Present",
+      "type": "tool",
+      "description": "Deploy your CI artifacts to Dropbox.",
+      "images": [
+        "dropbox_deployment_1.png"
+      ],
+      "links": {
+        "github": "https://github.com/Jawnnypoo/dropbox-deployment"
       }
     }
   ]

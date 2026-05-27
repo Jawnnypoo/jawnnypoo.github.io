@@ -7,8 +7,10 @@ const year = new Date().getFullYear();
 const gravatarUrl = 'https://www.gravatar.com/avatar/66372cf8a4b4dfad56d5dc4ddd4af34e';
 
 const professionalProjects = portfolioData.projects.filter(p => p.type === 'professional');
-const personalProjects = portfolioData.projects.filter(p => p.type === 'personal');
-const communityProjects = portfolioData.projects.filter(p => p.type === 'community');
+const appProjects = portfolioData.projects.filter(p => p.type === 'app');
+const libraryProjects = portfolioData.projects.filter(p => p.type === 'library');
+const toolProjects = portfolioData.projects.filter(p => p.type === 'tool');
+const webProjects = portfolioData.projects.filter(p => p.type === 'web');
 ---
 
 <BaseLayout title="John Carlson @Jawnnypoo">
@@ -81,8 +83,10 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
 
       <nav class="tabs" aria-label="Project categories">
         <button class="tab active" data-type="professional">Professional</button>
-        <button class="tab" data-type="personal">Personal</button>
-        <button class="tab" data-type="community">Community</button>
+        <button class="tab" data-type="app">Apps</button>
+        <button class="tab" data-type="library">Libraries</button>
+        <button class="tab" data-type="web">Web</button>
+        <button class="tab" data-type="tool">Tools</button>
       </nav>
 
       <hr class="divider" />
@@ -99,8 +103,8 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
         ))}
       </section>
 
-      <section class="projects-section hidden" data-section="personal">
-        {personalProjects.map(project => (
+      <section class="projects-section hidden" data-section="app">
+        {appProjects.map(project => (
           <ProjectCard
             name={project.name}
             company={project.company}
@@ -111,8 +115,32 @@ const communityProjects = portfolioData.projects.filter(p => p.type === 'communi
         ))}
       </section>
 
-      <section class="projects-section hidden" data-section="community">
-        {communityProjects.map(project => (
+      <section class="projects-section hidden" data-section="library">
+        {libraryProjects.map(project => (
+          <ProjectCard
+            name={project.name}
+            company={project.company}
+            description={project.description}
+            images={project.images}
+            links={project.links}
+          />
+        ))}
+      </section>
+
+      <section class="projects-section hidden" data-section="web">
+        {webProjects.map(project => (
+          <ProjectCard
+            name={project.name}
+            company={project.company}
+            description={project.description}
+            images={project.images}
+            links={project.links}
+          />
+        ))}
+      </section>
+
+      <section class="projects-section hidden" data-section="tool">
+        {toolProjects.map(project => (
           <ProjectCard
             name={project.name}
             company={project.company}
