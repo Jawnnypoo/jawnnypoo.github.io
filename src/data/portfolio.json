@@ -59,7 +59,7 @@
       "name": "SHRM Certification",
       "company": "Savvy Apps • 2017",
       "type": "professional",
-      "description": "SHRM, or the Society of Human Resource Management, has an app for getting certified. You can find nearby approved activities in your area, and even add professional development credits using the app. Fun fact, this was the first app I ever worked on with Kotlin! (back when it was 0.8.0!)",
+      "description": "SHRM, or the Society for Human Resource Management, has an app for getting certified. You can find nearby approved activities in your area, and even add professional development credits using the app. Fun fact, this was the first app I ever worked on with Kotlin! (back when it was 0.8.0!)",
       "images": [
         "shrm_1.png",
         "shrm_2.png",
@@ -118,7 +118,7 @@
       "name": "LabCoat",
       "company": "Commit 451 • 2015 - Present",
       "type": "app",
-      "description": "LabCoat is an native Android app built in Kotlin you can use to connect to and view projects hosted on a GitLab server. Currently the most starred Kotlin project on GitLab.com and the 7th most starred project of all GitLab.com repos, it was created to give back to the GitLab community, and has over 50,000 installs on the Play Store. Enjoyed by the [CTO of GitLab](https://twitter.com/dzaporozhets/status/700680242617135105). Did I mention it is open source?",
+      "description": "LabCoat is a native Android app built in Kotlin you can use to connect to and view projects hosted on a GitLab server. Currently the most starred Kotlin project on GitLab.com and the 7th most starred project of all GitLab.com repos, it was created to give back to the GitLab community, and has over 50,000 installs on the Play Store. Enjoyed by the [CTO of GitLab](https://twitter.com/dzaporozhets/status/700680242617135105). Did I mention it is open source?",
       "images": [
         "labcoat_1.png",
         "labcoat_2.png",
@@ -189,7 +189,7 @@
       "name": "LUSH Cosmetics",
       "company": "Oven Bits • 2015 - 2016",
       "type": "professional",
-      "description": "At Ovenbits, under the Pivot E-Commerce team, our team created native iOS and Android apps for our client, LUSH Cosmetics USA. We integrated with an existing Demandware backend to create a custom app, full of social content and fun animations. The app works with both their Canadian and United States storefronts.",
+      "description": "At Oven Bits, under the Pivot E-Commerce team, our team created native iOS and Android apps for our client, LUSH Cosmetics USA. We integrated with an existing Demandware backend to create a custom app, full of social content and fun animations. The app works with both their Canadian and United States storefronts.",
       "images": [
         "lush_1.png",
         "lush_2.png",
@@ -217,7 +217,7 @@
       "name": "GameStop",
       "company": "Ludomade • 2015",
       "type": "professional",
-      "description": "GameStop gives power to the players via their native apps for iOS and Android. With only two Android developers creating the 2.0 native app, I helped integrate material design and 5.0 features, created an RSS reader for connecting to GameInformer feeds, and lead other features such as Saved Searches and Preorder tracking.",
+      "description": "GameStop gives power to the players via their native apps for iOS and Android. With only two Android developers creating the 2.0 native app, I helped integrate material design and 5.0 features, created an RSS reader for connecting to GameInformer feeds, and led other features such as Saved Searches and Preorder tracking.",
       "images": [
         "gamestop_1.png",
         "gamestop_2.png",
@@ -233,7 +233,7 @@
       "name": "GeoTune",
       "company": "Commit 451 • 2014 - 2015",
       "type": "app",
-      "description": "One day at work, we thought it would be cool and funny if every time our project manager walked into the office, \"Turn Down for What\" would play. With this inspiration, Commit451 created GeoTune. GeoTune lets you set geofences wherever you want and will play a notification tone or any other media when you enter that geofence.",
+      "description": "One day at work, we thought it would be cool and funny if every time our project manager walked into the office, \"Turn Down for What\" would play. With this inspiration, Commit 451 created GeoTune. GeoTune lets you set geofences wherever you want and will play a notification tone or any other media when you enter that geofence.",
       "images": [
         "geotune_1.png",
         "geotune_2.png",
@@ -245,7 +245,7 @@
       "name": "NBC",
       "company": "Bottle Rocket • 2014",
       "type": "professional",
-      "description": "NBC called upon Bottle Rocket's AWE team to create apps for their major channels, including NBC proper. I worked with a team to apply custom designs to these channels individual apps. I also contributed to the AWE video playback framework, fixing obscure MediaPlayer issues and other fun things.",
+      "description": "NBC called upon Bottle Rocket's AWE team to create apps for their major channels, including NBC proper. I worked with a team to apply custom designs to these channels' individual apps. I also contributed to the AWE video playback framework, fixing obscure MediaPlayer issues and other fun things.",
       "images": [
         "nbc_1.png",
         "nbc_2.png",
@@ -313,7 +313,7 @@
       "name": "Skyhook",
       "company": "Commit 451 • 2018 - Present",
       "type": "web",
-      "description": "Skyhook parses webhooks from various services and forwards them in the proper format to Discord. It processes thousands of webhooks every day, providing people with realtime insights into their Jira tickets, Patreon alerts, etc all within their Discord server. Free, open source, powered by Typescript and Hono.",
+      "description": "Skyhook parses webhooks from various services and forwards them in the proper format to Discord. It processes thousands of webhooks every day, providing people with realtime insights into their Jira tickets, Patreon alerts, etc all within their Discord server. Free, open source, powered by TypeScript and Hono.",
       "images": [
         "skyhook_1.png"
       ],
@@ -391,7 +391,7 @@
       "name": "help me m8",
       "company": "Commit 451 • 2026 - Present",
       "type": "tool",
-      "description": "Help for the Dirtywave M8 setup and troubleshooting on RG351V. The Dirtywave M8 is such a fun tracker/music maker, lets make it easier for anyone to try it out!",
+      "description": "Help for the Dirtywave M8 setup and troubleshooting on RG351V. The Dirtywave M8 is such a fun tracker/music maker, let's make it easier for anyone to try it out!",
       "images": [
         "help_me_m8_1.jpg",
         "help_me_m8_2.jpg"
