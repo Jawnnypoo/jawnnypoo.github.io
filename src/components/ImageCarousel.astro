@@ -1,4 +1,7 @@
 ---
+import ArrowBackIcon from '../assets/icons/material/arrow-back.svg';
+import ArrowForwardIcon from '../assets/icons/material/arrow-forward.svg';
+
 interface Props {
   images: string[];
   projectName: string;
@@ -21,8 +24,12 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
     ))}
   </div>
   {images.length > 1 && (
-    <button class="carousel-btn prev" aria-label="Previous image">&larr;</button>
-    <button class="carousel-btn next" aria-label="Next image">&rarr;</button>
+    <button type="button" class="carousel-btn prev" aria-label="Previous image">
+      <ArrowBackIcon width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" />
+    </button>
+    <button type="button" class="carousel-btn next" aria-label="Next image">
+      <ArrowForwardIcon width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" />
+    </button>
   )}
   {images.length > 1 && (
     <div class="carousel-dots">
@@ -73,6 +80,9 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
 
   .carousel-btn {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.12);
@@ -80,12 +90,17 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
     border: none;
     width: 40px;
     height: 40px;
+    padding: 0;
     border-radius: 50%;
-    font-size: 1.2rem;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: background 0.2s;
     z-index: 2;
+  }
+
+  .carousel-btn :global(svg) {
+    display: block;
+    flex-shrink: 0;
   }
 
   .carousel-btn:hover {
