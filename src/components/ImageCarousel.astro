@@ -124,7 +124,7 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
   function initCarousels() {
     document.querySelectorAll<HTMLElement>('.carousel').forEach((carousel) => {
       const track = carousel.querySelector<HTMLElement>('.carousel-track');
-      const slides = carousel.querySelectorAll('.carousel-slide');
+      const slides = Array.from(carousel.querySelectorAll<HTMLButtonElement>('.carousel-slide'));
       const dots = carousel.querySelectorAll<HTMLButtonElement>('.dot');
       const prevBtn = carousel.querySelector<HTMLButtonElement>('.prev');
       const nextBtn = carousel.querySelector<HTMLButtonElement>('.next');
@@ -144,11 +144,9 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
         dot.addEventListener('click', () => goTo(Number(dot.dataset.index)));
       });
 
-      carousel.querySelectorAll<HTMLButtonElement>('.carousel-slide').forEach((slide) => {
+      slides.forEach((slide, index) => {
         slide.addEventListener('click', () => {
-          const src = slide.dataset.full;
-          const img = slide.querySelector('img') as HTMLImageElement | null;
-          if (src && img) openLightbox(src, img.alt, img);
+          openLightbox(slides, index, goTo);
         });
       });
     });
@@ -157,12 +155,16 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
   const MORPH_NAME = 'lightbox-image';
   let lightboxEl: HTMLDivElement | null = null;
   let sourceImg: HTMLImageElement | null = null;
+  let gallery: { slides: HTMLButtonElement[]; index: number; goTo: (index: number) => void } | null = null;
+  let previousOverflow = '';
+  let closing = false;
 
   function ensureLightbox(): HTMLDivElement {
     if (lightboxEl) return lightboxEl;
     const el = document.createElement('div');
     el.className = 'lightbox';
     el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-label', 'Screenshot viewer');
     el.setAttribute('aria-modal', 'true');
     el.setAttribute('aria-hidden', 'true');
     el.innerHTML = `
@@ -171,32 +173,92 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
           <path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
         </svg>
       </button>
+      <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M15 5 L8 12 L15 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </button>
       <img class="lightbox-img" alt="" />
+      <button type="button" class="lightbox-nav lightbox-next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M9 5 L16 12 L9 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </button>
+      <p class="lightbox-counter" role="status" aria-live="polite" aria-atomic="true"></p>
     `;
     el.addEventListener('click', (e) => {
       if (e.target === el) closeLightbox();
     });
     el.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
+    el.querySelector('.lightbox-prev')?.addEventListener('click', () => navigateLightbox(-1));
+    el.querySelector('.lightbox-next')?.addEventListener('click', () => navigateLightbox(1));
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && el.classList.contains('open')) closeLightbox();
+      if (!el.classList.contains('open') || closing) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+      } else if (!e.altKey && !e.ctrlKey && !e.metaKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+        e.preventDefault();
+        navigateLightbox(e.key === 'ArrowLeft' ? -1 : 1);
+      } else if (e.key === 'Tab') {
+        const buttons = Array.from(el.querySelectorAll<HTMLButtonElement>('button:not([hidden])'));
+        const first = buttons[0];
+        const last = buttons[buttons.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
     document.body.appendChild(el);
     lightboxEl = el;
     return el;
   }
 
-  function openLightbox(src: string, alt: string, source: HTMLImageElement) {
+  function showLightboxImage(index: number) {
+    if (!lightboxEl || !gallery) return;
+    const slide = gallery.slides[index];
+    const source = slide.querySelector('img');
+    const img = lightboxEl.querySelector<HTMLImageElement>('.lightbox-img');
+    if (!source || !slide.dataset.full || !img) return;
+
+    gallery.index = index;
+    gallery.goTo(index);
+    sourceImg = source;
+    img.src = slide.dataset.full;
+    img.alt = source.alt;
+    lightboxEl.querySelectorAll<HTMLButtonElement>('.lightbox-nav').forEach((button) => {
+      button.hidden = gallery!.slides.length < 2;
+    });
+    const counter = lightboxEl.querySelector('.lightbox-counter');
+    if (counter) counter.textContent = `${index + 1} / ${gallery.slides.length}`;
+  }
+
+  function navigateLightbox(direction: number) {
+    if (!gallery || gallery.slides.length < 2 || closing) return;
+    const count = gallery.slides.length;
+    showLightboxImage((gallery.index + direction + count) % count);
+  }
+
+  function openLightbox(slides: HTMLButtonElement[], index: number, goTo: (index: number) => void) {
+    if (closing) return;
+    const source = slides[index].querySelector('img');
+    if (!source || !slides[index].dataset.full) return;
     const el = ensureLightbox();
     const img = el.querySelector<HTMLImageElement>('.lightbox-img');
     if (!img) return;
-    img.src = src;
-    img.alt = alt;
-    sourceImg = source;
+    gallery = { slides, index, goTo };
+    showLightboxImage(index);
+    previousOverflow = document.body.style.overflow;
 
     const apply = () => {
       el.classList.add('open');
       el.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      el.querySelector<HTMLButtonElement>('.lightbox-close')?.focus({ preventScroll: true });
     };
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -217,13 +279,17 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
   }
 
   function closeLightbox() {
-    if (!lightboxEl) return;
+    if (!lightboxEl?.classList.contains('open') || closing) return;
+    closing = true;
     const img = lightboxEl.querySelector<HTMLImageElement>('.lightbox-img');
+    const returnFocus = gallery?.slides[gallery.index];
 
     const apply = () => {
       lightboxEl!.classList.remove('open');
       lightboxEl!.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousOverflow;
+      returnFocus?.focus({ preventScroll: true });
+      gallery = null;
     };
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -239,10 +305,12 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
       transition.finished.finally(() => {
         returnTo.style.viewTransitionName = '';
         sourceImg = null;
+        closing = false;
       });
     } else {
       apply();
       sourceImg = null;
+      closing = false;
     }
   }
 </script>
@@ -258,7 +326,7 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    padding: 2rem;
+    padding: 4.5rem;
     opacity: 0;
     transition: opacity 0.2s ease;
   }
@@ -276,15 +344,14 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   }
 
-  .lightbox-close {
+  .lightbox-close,
+  .lightbox-nav {
     position: fixed;
-    top: 1.25rem;
-    left: 1.25rem;
     width: 44px;
     height: 44px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(30, 30, 30, 0.8);
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
     color: #fff;
@@ -296,13 +363,50 @@ const carouselId = `carousel-${projectName.replace(/\s+/g, '-').toLowerCase()}`;
     z-index: 1001;
   }
 
-  .lightbox-close:hover {
+  .lightbox-close {
+    top: max(1.25rem, env(safe-area-inset-top));
+    left: max(1.25rem, env(safe-area-inset-left));
+  }
+
+  .lightbox-nav {
+    top: calc(50% - 22px);
+  }
+
+  .lightbox-prev { left: max(1rem, env(safe-area-inset-left)); }
+  .lightbox-next { right: max(1rem, env(safe-area-inset-right)); }
+  .lightbox-nav[hidden] { display: none; }
+
+  .lightbox-counter {
+    position: fixed;
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-nav:hover {
     background: rgba(255, 255, 255, 0.22);
     transform: scale(1.05);
   }
 
-  .lightbox-close:active {
+  .lightbox-close:active,
+  .lightbox-nav:active {
     transform: scale(0.96);
+  }
+
+  .lightbox-close:focus-visible,
+  .lightbox-nav:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .lightbox { padding: 4.5rem 0.5rem; }
+    .lightbox-prev { left: max(0.5rem, env(safe-area-inset-left)); }
+    .lightbox-next { right: max(0.5rem, env(safe-area-inset-right)); }
   }
 
   @media (prefers-reduced-motion: no-preference) {
